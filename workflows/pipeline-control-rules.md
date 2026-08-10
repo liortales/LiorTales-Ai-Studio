@@ -134,3 +134,28 @@ This rubric is applied at two distinct points in a run:
 
 1. **Pre-production** (Agent 07, before Agent 04/05 begin work): reference vs. Creative Blueprint.
 2. **Post-production** (Agent 07, after generation): the finished asset is checked for fidelity to the *approved* blueprint (did the event survive generation?) — this is Agent 07's Concept Fidelity QC area, not a re-run of the comparative score from scratch.
+
+## 9. PRODUCT ASSET LOCK (BOOK COVERS)
+
+Canonical rule for any content depicting a LiorTales book. The confirmed approved master covers (registry: `shared/product/product-bible.md` §18) are locked product assets — each is a complete, immutable image, not a description to reinterpret.
+
+**Whenever a book appears in a concept**, Agent 03's Creative Blueprint must name:
+
+BOOK_USED
+APPROVED_MASTER_COVER
+CANVA_ASSET (the exact asset ID from the registry)
+WHERE_THE_BOOK_APPEARS
+HOW_THE_COVER_REMAINS_VISIBLE
+PRODUCT_FIDELITY_METHOD
+
+Generic wording ("a personalized children's book") is invalid whenever a real LiorTales book is shown — a specific title from the confirmed registry must be selected.
+
+**Never regenerate the cover.** The approved cover image must never be redrawn, regenerated, approximated, redesigned, recolored, retitled, re-typeset, given different characters, or substituted with a similar or generic AI-generated book. The complete existing cover image is immutable.
+
+**Generation method:** if a generative tool (Canva, Kling, or other) cannot preserve the approved cover exactly, do not ask it to recreate the book artwork. Instead: generate the surrounding human scene/motion, preserving a suitable visible book surface or placement, then composite the exact approved Canva cover asset onto it — perspective, scale, and masking adjustments only. For video, if generation mutates the cover, generate the human motion separately and insert/track the exact approved cover asset during editing.
+
+**PRODUCT_ASSET_MISSING**: if the selected approved cover asset cannot be accessed, STOP. Never substitute another book. Report as a block per §2 routing (to Agent 01).
+
+**QC**: Agent 07 verifies the final asset against the named Canva source asset — see the Product Asset Identity QC area in `agents/07-quality-control-brand-guardian/README.md`.
+
+Referenced by Agents 03, 05, 06, and 07 rather than duplicated.

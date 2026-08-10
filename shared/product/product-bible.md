@@ -127,3 +127,22 @@ The agent must not guess. This aligns with the existing `PRODUCT_FACT_REQUIRED` 
 ## 17. CHANGE CONTROL
 
 Whenever Daryna confirms a new permanent product fact, this Product Bible must be updated first — specifically the relevant section/row above (e.g. §5 Product Formats, §7 Pricing). Downstream agents then inherit the new truth from this single document; no agent-level file should hold its own copy of a product fact.
+
+## 18. CONFIRMED EXISTING TITLES (APPROVED MASTER COVERS)
+
+CONFIRMED: the following titles are real, existing LiorTales books with locked cover artwork. Each cover is a complete, immutable image — the canonical source of truth for what appears on that book. Do not redraw, regenerate, approximate, or substitute any of these.
+
+Source location: Canva folder `LiorTales - Approved Book Assets` → `00_APPROVED_MASTER_COVERS_DO_NOT_MODIFY`.
+
+| # | Title | Canva Asset ID |
+|---|---|---|
+| 01 | Mia and the Missing Star | `MAHR7spCO30` |
+| 02 | Adam, Lev & Olivia: Monsters from the Stars | `MAHR7hILHjs` |
+| 03 | Rostislav: The Glitch in the Green Forest | `MAHR7hdvibw` |
+| 04 | Olivia and the Enchanted Bunny | `MAHR7kjIXWA` |
+
+This registry does not confirm the physical specifications in §5 (page count, trim size, binding, etc.) — those remain `STATUS: TBD` independently of cover-artwork confirmation. Title/cover existence and physical print specs are separate facts; do not infer one from the other.
+
+Canonical asset-lock rule governing use of these covers in marketing content: `workflows/pipeline-control-rules.md` §9. QC verification: the Product Asset Identity QC area in `agents/07-quality-control-brand-guardian/README.md`.
+
+Whenever a new approved master cover is added, update this registry first (see §17 CHANGE CONTROL); downstream agents then inherit the new title without this document needing to be rewritten elsewhere.

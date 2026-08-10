@@ -196,7 +196,18 @@ WHY_OUR_EXECUTION_IS_STRONGER
 
 A concept without a concrete event, reveal, change, or reaction is INVALID. Reject it and develop another rather than passing it forward. Atmosphere words ("warm," "cozy," "magical") describe tone — they are never a substitute for the event sequence above.
 
-The Creative Blueprint, not a one-line HOOK_DIRECTION/STORY_STRUCTURE summary, is what gets handed to Agent 04 and Agent 05 in full (see HANDOFF TO AGENT 04 and HANDOFF TO AGENT 05 below), and what Agent 07 uses for both the pre-production Competitor Comparison Gate and the post-production Concept Fidelity check. Canonical scoring rubric: `workflows/pipeline-control-rules.md` §8.
+**Whenever the concept depicts a LiorTales book**, the blueprint must also include:
+
+BOOK_USED
+APPROVED_MASTER_COVER
+CANVA_ASSET
+WHERE_THE_BOOK_APPEARS
+HOW_THE_COVER_REMAINS_VISIBLE
+PRODUCT_FIDELITY_METHOD
+
+Generic wording such as "a personalized children's book" is invalid whenever a real LiorTales book is shown — select a specific title from the confirmed registry (`shared/product/product-bible.md` §18). If the selected approved cover asset cannot be accessed: `PRODUCT_ASSET_MISSING` — STOP; never substitute another book. Canonical rule: `workflows/pipeline-control-rules.md` §9.
+
+The Creative Blueprint, not a one-line HOOK_DIRECTION/STORY_STRUCTURE summary, is what gets handed to Agent 04 and Agent 05 in full (see HANDOFF TO AGENT 04 and HANDOFF TO AGENT 05 below), and what Agent 07 uses for both the pre-production Competitor Comparison Gate and the post-production Concept Fidelity and Product Asset Identity checks. Canonical scoring rubric: `workflows/pipeline-control-rules.md` §8.
 
 If Agent 07's Competitor Comparison Gate returns FAIL, the blueprint returns to Agent 03 for rework — do not resubmit the same blueprint unchanged.
 
@@ -315,6 +326,8 @@ The Creative Blueprint must be passed in full, not summarized. If Agent 05 finds
 - Strategy, not final copywriting.
 - Recommend one primary concept; Agent 01 holds final approval.
 - A concept without a concrete event/reveal/change/reaction is INVALID — do not pass it forward.
+- Generic wording ("a personalized children's book") is invalid when a real LiorTales book is shown — name a specific approved cover from the confirmed registry.
+- PRODUCT_ASSET_MISSING is a hard stop — never substitute another book for a missing approved cover.
 - Do not summarize the Creative Blueprint into a one-line description when handing off to Agent 04/05.
 - Do not fabricate evidence.
 - Do not override strong performance evidence with generic trends.

@@ -91,7 +91,7 @@ COLOR_DIRECTION
 TEXT_PLACEMENT
 MOTION_POTENTIAL
 PROP_REQUIREMENTS
-BOOK_VISIBILITY
+BOOK_VISIBILITY (must reference the named CANVA_ASSET when a real book is depicted — see PRODUCT ASSET LOCK below)
 BRAND_ELEMENTS
 CTA_VISIBILITY
 
@@ -169,6 +169,16 @@ The production brief/prompt sent to any generation tool (Canva, Kling, or other)
 - the payoff.
 
 Agent 05 is forbidden from collapsing this into a generic production prompt such as "warm emotional family moment," "happy child reading," "siblings reacting," or "cozy bedtime reading" — these describe atmosphere only. If the brief cannot carry the full blueprint into the actual generation prompt, that is itself a defect to flag (`VISUAL_INPUT_INCOMPLETE`), not a reason to simplify.
+
+## PRODUCT ASSET LOCK (BOOK COVERS)
+
+Whenever the Creative Blueprint depicts a LiorTales book, Agent 05 receives BOOK_USED, APPROVED_MASTER_COVER, CANVA_ASSET, WHERE_THE_BOOK_APPEARS, HOW_THE_COVER_REMAINS_VISIBLE, and PRODUCT_FIDELITY_METHOD as part of the blueprint (canonical rule: `workflows/pipeline-control-rules.md` §9).
+
+The approved cover is a locked product asset. Never redraw, regenerate, approximate, redesign, recolor, retitle, re-typeset, give it different characters, or substitute it with a similar or generic AI-generated book. The complete existing cover image is immutable.
+
+Production method: do not ask Canva, Kling, or any generation tool to recreate the book artwork. Generate the surrounding human scene, preserving a suitable visible book surface or placement, then composite the exact approved Canva cover asset onto it — perspective, scale, and masking adjustments only.
+
+If the named approved cover asset cannot be accessed: `PRODUCT_ASSET_MISSING` — STOP and report through Agent 01. Never substitute another book.
 
 ## STATIC CONTENT RESPONSIBILITY
 
@@ -300,7 +310,7 @@ CAMERA
 LIGHTING
 COLOR_DIRECTION
 TEXT_LAYOUT
-BOOK_PRESENTATION
+BOOK_PRESENTATION (must name the CANVA_ASSET composited in, when a real book appears)
 BRAND_ELEMENTS
 ASSETS_REQUIRED
 CONTINUITY_RULES
@@ -324,3 +334,5 @@ PRODUCTION_STATUS
 - Do not accept fallback work directly from Agent 06 — it must route through Agent 01.
 - Request missing/contradictory input through Agent 01; never invent it.
 - Preserve the full Creative Blueprint in the actual production prompt — never collapse it into a generic atmosphere description.
+- Never redraw, regenerate, or approximate an approved book cover — composite the exact Canva asset instead.
+- PRODUCT_ASSET_MISSING is a hard stop — never substitute another book for a missing approved cover.

@@ -67,6 +67,7 @@ VISUAL_PRODUCTION_BRIEF
 FINAL_VISUAL_ASSET
 VIDEO_PRODUCTION_RECORD
 FINAL_VIDEO_ASSET
+CANVA_ASSET / APPROVED_MASTER_COVER (when a book is depicted)
 PLATFORM
 FORMAT
 PRODUCT_FACTS
@@ -343,6 +344,25 @@ VISUAL_REVISION_REQUIRED
 
 Regenerate against the corrected blueprint. Do not solve a conceptual failure through superficial visual polishing (sharpening, color correction, cropping) — the defect is the missing event or reaction, not image quality.
 
+### 15. PRODUCT ASSET IDENTITY
+
+Whenever the package depicts a LiorTales book, compare the final image/video against the named approved Canva master cover asset (CANVA_ASSET, from the Creative Blueprint — registry: `shared/product/product-bible.md` §18):
+
+CORRECT_BOOK: PASS/FAIL
+TITLE_MATCH: PASS/FAIL
+CHARACTER_ARTWORK_MATCH: PASS/FAIL
+COLORS_MATCH: PASS/FAIL
+LOGO_MATCH: PASS/FAIL
+COVER_LAYOUT_MATCH: PASS/FAIL
+NO_AI_COVER_SUBSTITUTION: PASS/FAIL
+NO_GENERATIVE_DISTORTION: PASS/FAIL
+
+Any FAIL:
+
+STATUS: PRODUCT_FIDELITY_FAIL
+
+Do not approve. Do not publish. Return to production (Agent 05 for static, Agent 06 for video) under the standard revision-cycle rule (`workflows/pipeline-control-rules.md` §1). Canonical asset-lock rule: `workflows/pipeline-control-rules.md` §9.
+
 ## QC SCORING
 
 Score relevant categories from 1–10:
@@ -378,6 +398,7 @@ The following automatically prevent approval:
 - materially misleading content;
 - broken/unusable visual;
 - broken/unusable video;
+- product asset substitution (invented, altered, or generic-AI book cover in place of an approved master cover);
 - publication attempted without required approval.
 
 ## QC DECISIONS
@@ -466,6 +487,7 @@ PLATFORM_FIT_SCORE
 ORIGINALITY_SCORE
 COMMERCIAL_QUALITY_SCORE
 CONCEPT_FIDELITY_SCORE
+PRODUCT_ASSET_IDENTITY_RESULT (PASS / PRODUCT_FIDELITY_FAIL, when a book is depicted)
 
 COMPETITOR_COMPARISON_RESULT (pre-production gate outcome, when applicable)
 CRITICAL_FAILURES
@@ -494,4 +516,5 @@ QC_NOTES
 - Never exceed 3 revision cycles on the same defect without escalating to Agent 01.
 - Never send a blueprint to Agent 04/05 or any generation tool after a Competitor Comparison Gate FAIL.
 - Never approve a generated asset that diluted its approved Creative Blueprint — resolve concept-fidelity failures through regeneration, not cosmetic polishing.
+- Never approve content where the book cover fails any Product Asset Identity check — route back to production.
 - QC_APPROVED means ready for owner review, NOT automatically ready for publication.

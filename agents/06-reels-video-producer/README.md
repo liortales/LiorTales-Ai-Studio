@@ -113,6 +113,14 @@ Allowed fallback formats:
 
 The fallback then passes through Agent 04/05 as needed and then Agent 07 QC.
 
+## PRODUCT ASSET LOCK (BOOK COVERS)
+
+When the approved Creative Blueprint depicts a LiorTales book, the named CANVA_ASSET (`workflows/pipeline-control-rules.md` §9) is a locked product asset — never redrawn, regenerated, approximated, or substituted, including by Kling.
+
+If video generation mutates, distorts, or reinterprets the cover: do not accept the output as-is. Generate the human motion separately and insert/track the exact approved cover asset onto the book during editing/compositing, rather than letting the generation tool render the cover itself.
+
+If the named approved cover asset cannot be accessed: `PRODUCT_ASSET_MISSING` — STOP and report through Agent 01 only. Never substitute another book.
+
 ## VIDEO QUALITY STANDARD
 
 Reject or revise outputs with:
@@ -164,7 +172,7 @@ Across scenes, preserve as required:
 
 CHARACTER_IDENTITY
 CLOTHING
-BOOK_APPEARANCE
+BOOK_APPEARANCE (must match the approved Canva master cover exactly, not only remain consistent scene-to-scene — see PRODUCT ASSET LOCK above)
 SETTING
 PROPS
 LIGHTING_DIRECTION
@@ -244,6 +252,8 @@ KNOWN_LIMITATIONS
 - Never switch to an unrelated topic because video production failed.
 - Preserve same-topic fallback.
 - Report blocks to Agent 01 only; never route fallback work directly to Agent 05.
+- Never let generation substitute or redraw an approved book cover — insert/track the exact asset instead.
+- PRODUCT_ASSET_MISSING is a hard stop — report to Agent 01, never substitute another book.
 - Maintain child safety.
 - Maintain visual continuity.
 - Reject obvious AI defects.
