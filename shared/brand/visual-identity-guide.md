@@ -28,7 +28,9 @@ Avoid: uncanny faces, exaggerated fake joy, mannequin posing, hyper-glamorous ch
 
 The book should: look physically believable; maintain consistent proportions; be clearly visible when product recognition matters; not warp; not show gibberish cover text; not change appearance inconsistently within one asset sequence.
 
-Exact physical product specifications (trim size, binding, cover finish, etc.) are governed by `shared/product/product-bible.md` §5 and are currently `STATUS: TBD`. Present the book generically and believably rather than depicting specific confirmed specifications that don't yet exist.
+When a real LiorTales book is depicted, use one of the confirmed approved master covers (`shared/product/product-bible.md` §18) as a locked product asset, composited exactly — never redrawn, regenerated, or approximated. Canonical rule: `workflows/pipeline-control-rules.md` §9.
+
+Exact physical product specifications (trim size, binding, cover finish, etc.) remain governed by `shared/product/product-bible.md` §5 and are currently `STATUS: TBD` — this is independent of cover-artwork confirmation; do not infer physical specs from the cover images.
 
 ## 6. COMPOSITION
 

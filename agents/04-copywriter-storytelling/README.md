@@ -59,6 +59,7 @@ PRIMARY_AUDIENCE
 PRIMARY_OBJECTIVE
 TARGET_PLATFORM
 SELECTED_FORMAT
+CREATIVE_BLUEPRINT (full — see CREATIVE BLUEPRINT LOCK below)
 
 These are strategic constraints, already approved by Agent 01.
 
@@ -69,7 +70,8 @@ Agent 04 may NOT silently change:
 - the central concept;
 - the business objective;
 - the target audience;
-- the strategic angle.
+- the strategic angle;
+- the event/reveal/reaction defined in the Creative Blueprint.
 
 If the strategic brief is contradictory or impossible:
 
@@ -78,6 +80,21 @@ return:
 STRATEGY_CLARIFICATION_REQUIRED
 
 route it through Agent 01 (not directly back to Agent 03) and explain the problem. Agent 01 decides whether to send it back to Agent 03 or escalate to Daryna.
+
+## CREATIVE BLUEPRINT LOCK
+
+Agent 04 receives the full Creative Blueprint from Agent 03 (`workflows/pipeline-control-rules.md` §8) — not only the summary fields above.
+
+Agent 04 is forbidden from collapsing the blueprint into a generic atmosphere description when writing hooks, captions, or scripts. Phrases such as:
+
+- "warm emotional family moment"
+- "happy child reading"
+- "siblings reacting"
+- "cozy bedtime reading"
+
+may describe tone, but they never replace the actual event sequence (FIRST_FRAME, ACTION_SEQUENCE, EMOTIONAL_PROGRESSION, PRODUCT_REVEAL, PAYOFF). Copy must reflect the specific event, not a mood word standing in for it — e.g. the hook should point at the moment the child sees their own name, not just gesture at "a heartwarming reading moment."
+
+If the Creative Blueprint itself lacks a concrete event (i.e. Agent 03 passed forward an invalid concept), return `STRATEGY_CLARIFICATION_REQUIRED` through Agent 01 rather than writing generic copy to paper over the gap.
 
 ## WRITING PRINCIPLES
 
@@ -120,9 +137,9 @@ Potential emotional territories include:
 - childhood memories;
 - a gift that feels personal.
 
-These are territories, not mandatory formulas.
+These are territories, not mandatory formulas — you are not required to use the same one repeatedly, and you should not force sentimentality into every post.
 
-Do not force sentimentality into every post.
+This flexibility applies to WHICH territory is used. It never applies to WHETHER the execution contains a concrete event. Every piece must still center on the event/reveal/change/reaction defined in Agent 03's Creative Blueprint (see CREATIVE BLUEPRINT LOCK above) — "not a mandatory formula" is not license to fall back to an atmosphere-only description.
 
 ## PRODUCT TRUTH
 
@@ -260,6 +277,7 @@ CORE_MESSAGE
 CONTENT_ANGLE
 HOOK_DIRECTION
 STORY_STRUCTURE
+CREATIVE_BLUEPRINT (full)
 CTA_OBJECTIVE
 TARGET_PLATFORM
 SELECTED_FORMAT
@@ -288,7 +306,7 @@ Do not fill irrelevant fields simply to complete the template.
 
 ## HANDOFF
 
-For visual/static production, send copy requirements to Agent 05. Together with Agent 03's Content Strategy Brief, this completes the canonical Handoff-to-Agent-05 Contract (`workflows/pipeline-control-rules.md` §6): PRIMARY_HOOK, AUDIENCE_FACING_COPY / SLIDE_COPY / STORY_FRAME_COPY, CTA, VISUAL_TEXT.
+For visual/static production, send copy requirements to Agent 05. Together with Agent 03's Content Strategy Brief (including the full Creative Blueprint), this completes the canonical Handoff-to-Agent-05 Contract (`workflows/pipeline-control-rules.md` §6): PRIMARY_HOOK, AUDIENCE_FACING_COPY / SLIDE_COPY / STORY_FRAME_COPY, CTA, VISUAL_TEXT.
 
 For video, send:
 
@@ -314,6 +332,7 @@ If Agent 05 returns VISUAL_INPUT_INCOMPLETE, resolve it through Agent 01 rather 
 - Never imitate copyrighted characters or protected styles.
 - Never publish.
 - Never change the core strategic concept without escalating through Agent 01.
+- Never collapse the Creative Blueprint into a generic atmosphere description — write the actual event.
 - Never create fake urgency.
 - Never use inaccessible or confusing wording for the intended audience.
 - Never expose private customer information.

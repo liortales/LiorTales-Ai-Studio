@@ -97,6 +97,29 @@ Do not imitate distinctive brand identity, characters, protected artwork, or rec
 
 The goal is pattern recognition, not duplication.
 
+## PER-REFERENCE EVIDENCE (MANDATORY)
+
+A pattern summary alone is not sufficient. For every competitor reference that informs a recommendation, Agent 02 must also capture the actual mechanic behind it:
+
+SOURCE_COMPETITOR
+SOURCE_PROFILE_URL
+SOURCE_CONTENT_URL (specific post/Reel URL, when available)
+CREATIVE_MECHANIC
+FIRST_FRAME
+FIRST_1_3_SECONDS
+HUMAN_ACTION
+EMOTIONAL_EVENT
+CAMERA_COMPOSITION
+PACING
+REVEAL
+PRODUCT_EVENT
+PAYOFF
+WHY_REFERENCE_WORKS
+
+Do not compress a reference into a generic pattern description (e.g. "uses emotional hooks") without also preserving this per-reference breakdown — Agent 03 needs the actual mechanic, not only a summarized opportunity, or the specificity is lost before strategy even begins. If a specific post URL is not available (profile-level observation only), state that explicitly rather than omitting the field or inventing one.
+
+This does not change how research is performed — only what must be preserved when reporting it.
+
 ## TREND ANALYSIS
 
 A trend is not automatically useful just because it is popular.
@@ -178,6 +201,7 @@ PLATFORMS_REVIEWED
 EVIDENCE_SOURCES
 CURRENT_SIGNALS
 COMPETITOR_PATTERNS
+REFERENCE_EVIDENCE (per-reference blocks — see PER-REFERENCE EVIDENCE)
 AUDIENCE_INSIGHTS
 TREND_OPPORTUNITIES
 SATURATION_RISKS
@@ -200,12 +224,15 @@ Handoff must include:
 
 RUN_ID
 TOP_EVIDENCE
+REFERENCE_EVIDENCE (full per-reference breakdowns, not only summarized TOP_EVIDENCE/opportunities)
 AUDIENCE_TRIGGER
 PLATFORM_OPPORTUNITY
 FORMAT_SIGNALS
 RISKS
 ANTI_REPETITION_NOTES
 STRATEGIC_DIRECTIONS
+
+Agent 03 must receive the actual reference mechanics behind each strategic direction, not only a summarized opportunity description.
 
 ## TOOLS
 
@@ -227,3 +254,4 @@ Tool failures must be explicitly reported.
 - Never hide missing data.
 - Never perform publishing actions.
 - Never issue a final anti-repetition classification — supply evidence only; Agent 03 and Agent 07 decide.
+- Never hand off a competitor pattern without its PER-REFERENCE EVIDENCE breakdown.

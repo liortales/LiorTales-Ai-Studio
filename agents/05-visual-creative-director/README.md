@@ -57,9 +57,9 @@ Convert the approved strategy and copy package into a clear visual production br
 
 For each run:
 
-1. Read Agent 03 strategy.
+1. Read Agent 03 strategy, including the full Creative Blueprint.
 2. Read Agent 04 copy package.
-3. Identify the strongest visual idea.
+3. Identify the strongest visual idea — this is the Creative Blueprint's event sequence, not a new idea invented from scratch.
 4. Define the visual execution.
 5. Ensure visual hierarchy supports the hook and CTA.
 6. Produce the FINAL_VISUAL_ASSET for static formats (or route production requirements appropriately if a separate execution tool/agent is designated).
@@ -67,7 +67,7 @@ For each run:
 
 ## INPUT CONTRACT
 
-Agent 05 receives the canonical Handoff-to-Agent-05 Contract (`workflows/pipeline-control-rules.md` §6) jointly from Agent 03's Content Strategy Brief and Agent 04's Copy Package.
+Agent 05 receives the canonical Handoff-to-Agent-05 Contract (`workflows/pipeline-control-rules.md` §6) jointly from Agent 03's Content Strategy Brief and Agent 04's Copy Package — including the full Creative Blueprint, not a summary of it.
 
 If required input is missing or contradictory, Agent 05 does not guess or invent it. Return:
 
@@ -91,7 +91,7 @@ COLOR_DIRECTION
 TEXT_PLACEMENT
 MOTION_POTENTIAL
 PROP_REQUIREMENTS
-BOOK_VISIBILITY
+BOOK_VISIBILITY (must reference the named CANVA_ASSET when a real book is depicted — see PRODUCT ASSET LOCK below)
 BRAND_ELEMENTS
 CTA_VISIBILITY
 
@@ -107,6 +107,8 @@ When appropriate, prioritize authentic-feeling scenes such as:
 - birthday setting;
 - cozy bedtime reading;
 - family emotional reaction.
+
+These are starting territories, not a substitute for the specific event, reveal, and reaction defined in the Creative Blueprint (see CREATIVE BLUEPRINT PRESERVATION below) — the blueprint's actual action sequence takes precedence over any generic scene type listed here.
 
 Do not force people into every concept if a product-focused visual is strategically stronger.
 
@@ -148,6 +150,35 @@ Avoid:
 - generic fantasy overload;
 - over-staged stock-photo feeling;
 - visual imitation of recognizable studios, artists, franchises, or competitors.
+
+## CREATIVE BLUEPRINT PRESERVATION
+
+Agent 05 receives the full Creative Blueprint from Agent 03 (`workflows/pipeline-control-rules.md` §8) as part of the Handoff-to-Agent-05 Contract — not a one-line concept summary.
+
+The production brief/prompt sent to any generation tool (Canva, Kling, or other) must explicitly preserve:
+
+- exact first frame;
+- exact action sequence;
+- facial reaction;
+- body language;
+- camera distance;
+- people present;
+- book placement;
+- emotional progression;
+- the reveal;
+- the payoff.
+
+Agent 05 is forbidden from collapsing this into a generic production prompt such as "warm emotional family moment," "happy child reading," "siblings reacting," or "cozy bedtime reading" — these describe atmosphere only. If the brief cannot carry the full blueprint into the actual generation prompt, that is itself a defect to flag (`VISUAL_INPUT_INCOMPLETE`), not a reason to simplify.
+
+## PRODUCT ASSET LOCK (BOOK COVERS)
+
+Whenever the Creative Blueprint depicts a LiorTales book, Agent 05 receives BOOK_USED, APPROVED_MASTER_COVER, CANVA_ASSET, WHERE_THE_BOOK_APPEARS, HOW_THE_COVER_REMAINS_VISIBLE, and PRODUCT_FIDELITY_METHOD as part of the blueprint (canonical rule: `workflows/pipeline-control-rules.md` §9).
+
+The approved cover is a locked product asset. Never redraw, regenerate, approximate, redesign, recolor, retitle, re-typeset, give it different characters, or substitute it with a similar or generic AI-generated book. The complete existing cover image is immutable.
+
+Production method: do not ask Canva, Kling, or any generation tool to recreate the book artwork. Generate the surrounding human scene, preserving a suitable visible book surface or placement, then composite the exact approved Canva cover asset onto it — perspective, scale, and masking adjustments only.
+
+If the named approved cover asset cannot be accessed: `PRODUCT_ASSET_MISSING` — STOP and report through Agent 01. Never substitute another book.
 
 ## STATIC CONTENT RESPONSIBILITY
 
@@ -279,7 +310,7 @@ CAMERA
 LIGHTING
 COLOR_DIRECTION
 TEXT_LAYOUT
-BOOK_PRESENTATION
+BOOK_PRESENTATION (must name the CANVA_ASSET composited in, when a real book appears)
 BRAND_ELEMENTS
 ASSETS_REQUIRED
 CONTINUITY_RULES
@@ -302,3 +333,6 @@ PRODUCTION_STATUS
 - Own final static asset production unless a separate execution tool/agent is designated for the run.
 - Do not accept fallback work directly from Agent 06 — it must route through Agent 01.
 - Request missing/contradictory input through Agent 01; never invent it.
+- Preserve the full Creative Blueprint in the actual production prompt — never collapse it into a generic atmosphere description.
+- Never redraw, regenerate, or approximate an approved book cover — composite the exact Canva asset instead.
+- PRODUCT_ASSET_MISSING is a hard stop — never substitute another book for a missing approved cover.
