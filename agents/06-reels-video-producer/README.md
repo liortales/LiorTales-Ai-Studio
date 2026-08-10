@@ -67,7 +67,7 @@ Do not force this structure when another structure better supports the strategy.
 
 ## KLINGAI
 
-When KlingAI is available and authorized, it may be used for video generation.
+Agent 06 attempts video production only when an approved video execution tool is available and authorized.
 
 Never claim a Kling generation succeeded unless the tool confirms success.
 
@@ -103,7 +103,7 @@ Preserve:
 - the same core message;
 - the same hook direction where feasible.
 
-Then return the production task to Agent 01 / Agent 05 for SAME-TOPIC FALLBACK.
+Report VIDEO_PRODUCTION_BLOCKED and BLOCK_REASON to Agent 01 ONLY. Agent 06 does not route fallback work directly to Agent 05 — Agent 01 decides the recovery route and, when appropriate, routes the same approved concept to Agent 05 for a static alternative. Canonical fallback route: `workflows/pipeline-control-rules.md` §4.
 
 Allowed fallback formats:
 
@@ -111,7 +111,7 @@ Allowed fallback formats:
 - single-image post;
 - Story package.
 
-The fallback must still pass through Agent 04/05 as needed and then Agent 07 QC.
+The fallback then passes through Agent 04/05 as needed and then Agent 07 QC.
 
 ## VIDEO QUALITY STANDARD
 
@@ -243,6 +243,7 @@ KNOWN_LIMITATIONS
 - Never hide Kling failure.
 - Never switch to an unrelated topic because video production failed.
 - Preserve same-topic fallback.
+- Report blocks to Agent 01 only; never route fallback work directly to Agent 05.
 - Maintain child safety.
 - Maintain visual continuity.
 - Reject obvious AI defects.

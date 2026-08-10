@@ -57,7 +57,7 @@ Return:
 
 PUBLISHING_BLOCKED
 
-with exact reason.
+with exact reason, reported to Agent 01.
 
 Passing QC alone does NOT authorize publication.
 
@@ -112,27 +112,9 @@ PUBLISHING_INPUT_INCOMPLETE
 
 ## PLATFORM SCOPE
 
-Supported content platforms may include:
+Supported content platforms: see the canonical list in `shared/platform-rules/platform-and-publishing-policy.md`.
 
-- Instagram
-- Facebook
-- Pinterest
-- TikTok
-- YouTube
-- Reddit
-- Threads
-
-Etsy is NOT a social content platform.
-
-Etsy may be used as:
-- storefront;
-- sales destination;
-- CTA destination;
-- product link destination;
-
-when appropriate.
-
-Do not treat Etsy as a publishing/content platform.
+Etsy is NOT a social content platform. Etsy may be used as a storefront, sales destination, CTA destination, or product link destination when appropriate. Do not treat Etsy as a publishing/content platform.
 
 ## PUBLICATION RESPONSIBILITIES
 
@@ -173,6 +155,8 @@ FAILURE_REASON
 TOOL_RESPONSE
 RETRY_RECOMMENDATION
 
+Report to Agent 01.
+
 Do not fabricate success.
 
 Do not repeatedly retry without reason.
@@ -181,9 +165,15 @@ Do not create substitute content because publishing failed.
 
 ## SCHEDULING
 
-When a publication schedule is provided:
+Agent 08 owns the performance-based scheduling recommendation (best time/day to publish) whenever sufficient analytics evidence exists. Agent 03 may propose an initial PLANNING_WINDOW before performance evidence exists for a new concept/format/platform combination; Agent 01 resolves any conflict between the two and records the APPROVED_SCHEDULE in the run's orchestration record. Canonical rule: `shared/platform-rules/platform-and-publishing-policy.md`.
 
-respect:
+If insufficient performance data exists to support a confident recommendation, label the result:
+
+TEST_SCHEDULE
+
+rather than presenting it as analytics-backed.
+
+Once a schedule is approved, respect:
 - exact date;
 - exact time;
 - timezone;
@@ -219,7 +209,7 @@ If adaptation is required but not approved:
 
 PLATFORM_ADAPTATION_REQUIRED
 
-Route back through the relevant specialist workflow.
+Route back through Agent 01 to the relevant specialist workflow.
 
 ## PUBLICATION RECORD
 
@@ -232,6 +222,7 @@ CONTENT_ID
 SCHEDULED_TIME
 ACTUAL_PUBLISH_TIME
 TIMEZONE
+SCHEDULE_SOURCE (PLANNING_WINDOW / PERFORMANCE_BASED / TEST_SCHEDULE)
 PUBLISHING_TOOL
 PUBLISHING_STATUS
 PLATFORM_POST_ID
@@ -408,6 +399,7 @@ CONFIDENCE_LEVEL
 LESSONS
 RECOMMENDATIONS
 ANTI_REPETITION_IMPACT
+SCHEDULING_RECOMMENDATION
 DATA_LIMITATIONS
 
 ## FEEDBACK HANDOFF
@@ -415,13 +407,13 @@ DATA_LIMITATIONS
 Performance evidence should feed:
 
 Agent 01:
-overall workflow decisions.
+overall workflow decisions, including scheduling conflict resolution.
 
 Agent 02:
 future intelligence context and internal evidence.
 
 Agent 03:
-future strategy selection.
+future strategy selection and future PLANNING_WINDOW proposals.
 
 Relevant learning may also be routed to:
 Agent 04 for copy patterns,
@@ -467,3 +459,5 @@ Do not include private account credentials, personal customer data, or sensitive
 - Never automatically kill a concept after one weak post.
 - Never modify strategy/copy/visuals outside the proper handoff process.
 - Never expose private customer information.
+- Never present a TEST_SCHEDULE as an analytics-backed recommendation.
+- Never resolve a scheduling conflict with Agent 03 directly — route through Agent 01.
