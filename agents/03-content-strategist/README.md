@@ -60,7 +60,8 @@ For each production run:
 5. Recommend ONE primary content concept for Agent 01's approval.
 6. Propose the appropriate platform and format.
 7. Define the content angle, emotional trigger, message, CTA objective, and creative direction.
-8. Pass a clear content brief to Agent 04 and the relevant production agents.
+8. Build the Creative Blueprint (see CREATIVE BLUEPRINT below) before anything reaches Agent 04 or Agent 05.
+9. Pass a clear content brief to Agent 04 and the relevant production agents.
 
 ## CONCEPT RECOMMENDATION AUTHORITY
 
@@ -174,6 +175,31 @@ Then hand off visual direction to Agent 05 and video execution requirements to A
 
 If Kling or another required video tool later becomes unavailable, Agent 06 reports the block to Agent 01, which routes the SAME concept to Agent 05 for a static alternative (carousel, single-image post, or Story package). Agent 03 must NOT invent an unrelated replacement concept when this happens. Canonical fallback route: `workflows/pipeline-control-rules.md` §4.
 
+## CREATIVE BLUEPRINT (MANDATORY)
+
+Before any concept reaches Agent 04 or Agent 05, Agent 03 must build a CREATIVE BLUEPRINT from Agent 02's PER-REFERENCE EVIDENCE (`agents/02-competitor-trend-intelligence/README.md`):
+
+REFERENCE (competitor + URL)
+MECHANIC_TO_KEEP
+WHAT_NOT_TO_COPY
+LIORTALES_UPGRADE
+FIRST_FRAME
+FIRST_3_SECONDS
+PEOPLE_PRESENT
+ACTION_SEQUENCE
+EMOTIONAL_PROGRESSION
+PRODUCT_REVEAL
+CAMERA_AND_COMPOSITION
+PACING
+PAYOFF
+WHY_OUR_EXECUTION_IS_STRONGER
+
+A concept without a concrete event, reveal, change, or reaction is INVALID. Reject it and develop another rather than passing it forward. Atmosphere words ("warm," "cozy," "magical") describe tone — they are never a substitute for the event sequence above.
+
+The Creative Blueprint, not a one-line HOOK_DIRECTION/STORY_STRUCTURE summary, is what gets handed to Agent 04 and Agent 05 in full (see HANDOFF TO AGENT 04 and HANDOFF TO AGENT 05 below), and what Agent 07 uses for both the pre-production Competitor Comparison Gate and the post-production Concept Fidelity check. Canonical scoring rubric: `workflows/pipeline-control-rules.md` §8.
+
+If Agent 07's Competitor Comparison Gate returns FAIL, the blueprint returns to Agent 03 for rework — do not resubmit the same blueprint unchanged.
+
 ## ANTI-REPETITION
 
 Review recent LiorTales content evidence when available.
@@ -201,7 +227,7 @@ Typical inputs:
 
 RUN_ID
 OBJECTIVE
-Agent 02 intelligence brief
+Agent 02 intelligence brief (including PER-REFERENCE EVIDENCE)
 performance evidence
 recent content history
 brand rules
@@ -225,6 +251,7 @@ TARGET_PLATFORM
 SELECTED_FORMAT
 HOOK_DIRECTION
 STORY_STRUCTURE
+CREATIVE_BLUEPRINT (see CREATIVE BLUEPRINT above)
 CTA_OBJECTIVE
 VISUAL_DIRECTION_SUMMARY
 VIDEO_RECOMMENDED
@@ -251,6 +278,7 @@ CORE_MESSAGE
 CONTENT_ANGLE
 HOOK_DIRECTION
 STORY_STRUCTURE
+CREATIVE_BLUEPRINT (full — see CREATIVE BLUEPRINT above)
 CTA_OBJECTIVE
 TARGET_PLATFORM
 SELECTED_FORMAT
@@ -259,6 +287,8 @@ REQUIRED_FACTS
 PROHIBITED_CLAIMS
 
 Agent 03 should NOT write the final caption, script, voiceover, or Story text inside this handoff.
+
+The Creative Blueprint must be passed in full. Do not summarize it into a shorter description before handing it to Agent 04.
 
 ## HANDOFF TO AGENT 05
 
@@ -272,17 +302,20 @@ PRIMARY_OBJECTIVE
 PRIMARY_AUDIENCE
 HOOK_DIRECTION
 STORY_STRUCTURE
+CREATIVE_BLUEPRINT (full — see CREATIVE BLUEPRINT above)
 CTA_OBJECTIVE
 REQUIRED_FACTS
 PROHIBITED_CLAIMS
 ANTI_REPETITION_STATUS
 
-If Agent 05 finds this input incomplete or contradictory, it returns VISUAL_INPUT_INCOMPLETE through Agent 01 rather than guessing or contacting Agent 03 directly.
+The Creative Blueprint must be passed in full, not summarized. If Agent 05 finds this input incomplete or contradictory, it returns VISUAL_INPUT_INCOMPLETE through Agent 01 rather than guessing or contacting Agent 03 directly.
 
 ## HARD RULES
 
 - Strategy, not final copywriting.
 - Recommend one primary concept; Agent 01 holds final approval.
+- A concept without a concrete event/reveal/change/reaction is INVALID — do not pass it forward.
+- Do not summarize the Creative Blueprint into a one-line description when handing off to Agent 04/05.
 - Do not fabricate evidence.
 - Do not override strong performance evidence with generic trends.
 - Do not treat Etsy as a social platform.

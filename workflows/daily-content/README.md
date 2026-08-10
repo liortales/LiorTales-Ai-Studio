@@ -2,7 +2,7 @@
 
 The execution contract used when the LiorTales Daily Routine starts a content-production run. It connects the existing 8 agents into one deterministic pipeline. It does not define new agents or new responsibilities — it sequences the responsibilities already defined in `agents/01-…` through `agents/08-…/README.md`, and defers to the canonical governance files for shared control-flow rules:
 
-- `workflows/pipeline-control-rules.md` — revision-cycle cap, QC_BLOCKED/PRODUCTION_BLOCKED, concept-selection authority, Kling/video fallback route, anti-repetition taxonomy, Handoff-to-Agent-05 contract.
+- `workflows/pipeline-control-rules.md` — revision-cycle cap, QC_BLOCKED/PRODUCTION_BLOCKED, concept-selection authority, Kling/video fallback route, anti-repetition taxonomy, Handoff-to-Agent-05 contract, Competitor Benchmark & Comparative Creative Gate.
 - `shared/brand/language-policy.md` — Russian/American-English language policy.
 - `shared/platform-rules/platform-and-publishing-policy.md` — platform list, Etsy classification, scheduling ownership.
 
@@ -22,6 +22,8 @@ Possible finished formats:
 - Story package containing 1–3 connected frames
 
 Do not produce multiple unrelated finished concepts in one daily run.
+
+**Full canonical chain**: REFERENCE → MECHANIC → CREATIVE BLUEPRINT → COMPETITOR COMPARISON → DARYNA PRE-PRODUCTION APPROVAL *(temporary, testing phase)* → PRODUCTION → ASSET FIDELITY QC → OWNER APPROVAL → PUBLISHING → PERFORMANCE ANALYSIS → LEARNING LOOP.
 
 ## SYSTEM ENTRY
 
@@ -52,47 +54,79 @@ Agent 01 sends the research task to Agent 02.
 
 Agent 02 evaluates current trends, competitor/content patterns, audience signals, platform opportunities, recent LiorTales content, and available analytics evidence — labeling each item FACT / OBSERVED_PATTERN / INFERENCE / OPPORTUNITY / RISK.
 
-Agent 02 returns its structured intelligence brief (Handoff-to-Agent-03 package — see `agents/02-competitor-trend-intelligence/README.md`).
+For every competitor reference used, Agent 02 must also capture its PER-REFERENCE EVIDENCE breakdown (source handle, profile/content URLs, and the actual creative mechanic: first frame, first 1–3 seconds, human action, emotional event, camera/composition, pacing, reveal, product event, payoff, why it works) — see `agents/02-competitor-trend-intelligence/README.md`. A pattern summary alone is not sufficient to proceed to Stage 2.
+
+Agent 02 returns its structured intelligence brief (Handoff-to-Agent-03 package, including REFERENCE_EVIDENCE).
 
 Agent 02 does NOT choose the final content concept.
 
 NEXT: Agent 03.
 
-## STAGE 2 — AGENT 03: STRATEGY & CONCEPT RECOMMENDATION
+## STAGE 2 — AGENT 03: STRATEGY, CONCEPT RECOMMENDATION & CREATIVE BLUEPRINT
 
-Agent 03 receives RUN_ID, OBJECTIVE, Agent 02's intelligence, available performance evidence, recent-content history, and production constraints.
+Agent 03 receives RUN_ID, OBJECTIVE, Agent 02's intelligence (including REFERENCE_EVIDENCE), available performance evidence, recent-content history, and production constraints.
 
 Agent 03 identifies the strongest audience opportunity, determines the primary objective, recommends/ranks the strongest concept, proposes platform and format, establishes content angle and CTA objective, and checks strategic repetition (canonical taxonomy, see ANTI-REPETITION below).
 
+Before anything reaches Agent 04 or Agent 05, Agent 03 must build the CREATIVE BLUEPRINT from Agent 02's per-reference evidence (`agents/03-content-strategist/README.md`): the reference, the mechanic to keep, what not to copy, the LiorTales upgrade, the exact first frame, first 3 seconds, people present, action sequence, emotional progression, product reveal, camera/composition, pacing, payoff, and why the execution is stronger than the reference. **A concept without a concrete event, reveal, change, or reaction is INVALID** and must be reworked before it proceeds.
+
 Agent 03 does NOT write final audience-facing copy.
 
-Agent 03 sends its recommendation to Agent 01. **Agent 01 performs final concept/orchestration approval** — this is Agent 03's recommendation becoming Agent 01's decision, per the canonical Concept Selection Authority rule (`workflows/pipeline-control-rules.md` §3).
+Agent 03 sends its recommendation and Creative Blueprint to Agent 01. **Agent 01 performs final concept/orchestration approval** — this is Agent 03's recommendation becoming Agent 01's decision, per the canonical Concept Selection Authority rule (`workflows/pipeline-control-rules.md` §3).
 
 After Agent 01 approval, SELECTED_CONCEPT becomes locked. Any material concept change later in the run must return to Agent 01 — no other agent may make it unilaterally.
+
+NEXT: the Competitor Comparison Gate (below), before Agent 04.
+
+## PRE-PRODUCTION COMPETITOR COMPARISON GATE
+
+Before any copy or visual production begins, Agent 07 compares the REFERENCE against the approved Creative Blueprint and scores both on HOOK, CURIOSITY, EMOTION, HUMAN_REALISM, STORY, SCROLL_STOP_POWER, PRODUCT_DESIRE, and MEMORABILITY (canonical rubric: `workflows/pipeline-control-rules.md` §8).
+
+The LiorTales blueprint must show credible improvement over the reference in **at least 3 of these 8 dimensions**. If it does not:
+
+`STATUS: FAIL` → route back to Agent 03 for rework. The blueprint does **not** proceed to Agent 04, Agent 05, or any generation tool.
+
+If it passes, the run proceeds to the Daryna pre-production review below.
+
+## DARYNA PRE-PRODUCTION REVIEW (TEMPORARY — TESTING PHASE)
+
+For the current testing phase, before Agent 04/05 begin production, Agent 01 must present to Daryna:
+
+REFERENCE (competitor name + direct clickable source URL)
+WHY IT WORKS
+LIORTALES UPGRADE
+FIRST FRAME
+FIRST 3 SECONDS
+FULL CONTENT MOMENT
+WHY OUR VERSION SHOULD BE STRONGER
+
+Then STOP. Wait for Daryna's explicit approval. Only after that approval may Agent 04/05 begin production.
+
+This is a **temporary, additional** gate — distinct from and earlier than the existing Stage 7 Owner Approval (which reviews the finished, QC-approved package before publishing and remains unchanged). After 10 consistently strong approved production cycles, this early gate may be reconsidered/reduced; until then it is mandatory for every run.
 
 NEXT: Agent 04.
 
 ## STAGE 3 — AGENT 04: COPY & STORYTELLING
 
-Agent 04 receives the Agent-01-approved strategy.
+Agent 04 receives the Agent-01-approved strategy, including the full Creative Blueprint (not a summary of it).
 
-Agent 04 produces only the copy fields required for the selected format (hook, audience-facing copy/caption, CTA, voiceover, subtitles, on-screen text, slide/carousel copy, Story-frame copy — see the COPY PACKAGE output in `agents/04-copywriter-storytelling/README.md`).
+Agent 04 produces only the copy fields required for the selected format (hook, audience-facing copy/caption, CTA, voiceover, subtitles, on-screen text, slide/carousel copy, Story-frame copy — see the COPY PACKAGE output in `agents/04-copywriter-storytelling/README.md`), reflecting the blueprint's actual event — not a generic atmosphere description such as "warm emotional family moment" or "happy child reading."
 
 Audience-facing content: natural American English (`shared/brand/language-policy.md`).
 
-Agent 04 must NOT independently change the core concept, objective, audience, or strategic angle.
+Agent 04 must NOT independently change the core concept, objective, audience, strategic angle, or the blueprint's event/reveal/reaction.
 
 If the strategy is unusable: `STRATEGY_CLARIFICATION_REQUIRED` → Agent 01 (never resolved by contacting Agent 03 directly).
 
-After copy is ready, Agent 03's Content Strategy Brief and Agent 04's Copy Package together form the canonical Handoff-to-Agent-05 Contract (`workflows/pipeline-control-rules.md` §6).
+After copy is ready, Agent 03's Content Strategy Brief (with Creative Blueprint) and Agent 04's Copy Package together form the canonical Handoff-to-Agent-05 Contract (`workflows/pipeline-control-rules.md` §6).
 
 NEXT: Agent 05.
 
 ## STAGE 4 — AGENT 05: VISUAL PRODUCTION
 
-Agent 05 receives the canonical Handoff-to-Agent-05 package. If it is incomplete or contradictory, Agent 05 returns `VISUAL_INPUT_INCOMPLETE` → Agent 01, and does not guess.
+Agent 05 receives the canonical Handoff-to-Agent-05 package, including the full Creative Blueprint. If it is incomplete or contradictory, Agent 05 returns `VISUAL_INPUT_INCOMPLETE` → Agent 01, and does not guess.
 
-Agent 05 owns visual direction, composition, scenes, hierarchy, visual continuity, and the production specification (`agents/05-visual-creative-director/README.md`).
+Agent 05 owns visual direction, composition, scenes, hierarchy, visual continuity, and the production specification (`agents/05-visual-creative-director/README.md`). The production brief/prompt sent to any generation tool must explicitly preserve the blueprint's first frame, exact action, facial reaction, body language, camera distance, people present, book placement, emotional progression, reveal, and payoff — Agent 05 is forbidden from collapsing these into a generic prompt.
 
 **Branch by format:**
 
@@ -126,7 +160,7 @@ Do NOT generate an unrelated backup concept merely because video production fail
 
 Every finished package MUST pass Agent 07. Agent 07 reviews; it does NOT generate assets (`agents/07-quality-control-brand-guardian/README.md`).
 
-Checks strategy alignment, brand, product truth, factual accuracy, copy, visual quality, video quality, copyright/IP, privacy, child safety, platform suitability, originality, anti-repetition, and commercial quality.
+Checks strategy alignment, brand, product truth, factual accuracy, copy, visual quality, video quality, copyright/IP, privacy, child safety, platform suitability, originality, anti-repetition, commercial quality, and — new — **Concept Fidelity**: whether the finished asset actually preserved the approved Creative Blueprint's event, first frame, facial reaction, action sequence, emotional progression, and product involvement, or whether generation diluted it into generic content. A concept-fidelity failure is `VISUAL_REVISION_REQUIRED` and routes back for regeneration against the corrected blueprint — not a cosmetic touch-up.
 
 Possible decisions: `QC_APPROVED`, `QC_REVISION_REQUIRED`, `QC_INPUT_INCOMPLETE`, `QC_BLOCKED`.
 
@@ -140,9 +174,11 @@ Possible decisions: `QC_APPROVED`, `QC_REVISION_REQUIRED`, `QC_INPUT_INCOMPLETE`
 
 DEFAULT: REVIEW_MODE.
 
+This is the permanent, post-QC approval gate for the finished package — distinct from the temporary pre-production Daryna review earlier in this workflow, which reviews the *concept* before production spends any generation budget. Both gates are currently required; this one does not go away when the pre-production gate is eventually reduced.
+
 After QC_APPROVED, Agent 01 presents the completed package to Daryna. The presentation itself (framing, summary, questions) is in Russian; the final audience-facing copy and visual/video asset inside the package remain in their produced American English — they are not translated for review.
 
-The review package should clearly show: selected concept, platform, format, primary objective, final visual/video asset, final audience-facing copy, CTA, recommended publishing date/time, evidence summary, QC status, and relevant limitations.
+The review package should clearly show: selected concept, platform, format, final visual/video asset, final audience-facing copy, CTA, recommended publishing date/time, evidence summary, QC status (including Concept Fidelity result), and relevant limitations.
 
 Status: `AWAITING_OWNER_APPROVAL`.
 
@@ -236,3 +272,6 @@ Do NOT place private customer data into public repository content.
 - Maintain copyright/IP safety.
 - Agent roles stay separate.
 - Exactly 8 agents exist. This workflow is NOT Agent 09.
+- No valid Creative Blueprint (with a concrete event) = no production.
+- No Competitor Comparison Gate pass = no production.
+- During the testing phase, no Daryna pre-production approval = no production.

@@ -75,6 +75,7 @@ PRIMARY_OBJECTIVE
 PRIMARY_AUDIENCE
 HOOK (direction from Agent 03, final wording from Agent 04)
 CONTENT_STRUCTURE (story structure / slide structure)
+CREATIVE_BLUEPRINT (full — see §8; not summarized)
 COPY_OR_SCRIPT (final audience-facing copy from Agent 04)
 CTA (objective from Agent 03, final wording from Agent 04)
 REQUIRED_PRODUCT_FACTS
@@ -90,3 +91,46 @@ If any of these fields is missing or contradictory, Agent 05 does not guess. It 
 - Agent 06 remains the sole production owner for video/Reel assets.
 - Agent 07 never generates, edits, or produces any asset. It reviews only.
 - Agent 01 orchestrates the handoff but does not silently execute creative work itself.
+
+## 8. COMPETITOR BENCHMARK & COMPARATIVE CREATIVE GATE
+
+Canonical rubric for connecting real competitor evidence to a stronger original LiorTales execution, and for verifying that strength survives all the way to the finished asset. Used by Agent 03 (building the Creative Blueprint), Agent 07 (the pre-production Competitor Comparison Gate and the post-production Concept Fidelity check), and received in full by Agents 04 and 05.
+
+**Creative Blueprint fields** (Agent 03 builds this from Agent 02's PER-REFERENCE EVIDENCE before anything reaches Agent 04 or Agent 05):
+
+REFERENCE (competitor + URL)
+MECHANIC_TO_KEEP
+WHAT_NOT_TO_COPY
+LIORTALES_UPGRADE
+FIRST_FRAME
+FIRST_3_SECONDS
+PEOPLE_PRESENT
+ACTION_SEQUENCE
+EMOTIONAL_PROGRESSION
+PRODUCT_REVEAL
+CAMERA_AND_COMPOSITION
+PACING
+PAYOFF
+WHY_OUR_EXECUTION_IS_STRONGER
+
+A concept without a concrete event, reveal, change, or reaction is INVALID and must not proceed. Atmosphere descriptions ("warm," "cozy," "magical," "happy family") are never a substitute for this event sequence, and no agent downstream of Agent 03 may collapse the blueprint back down to one.
+
+**Comparative scoring dimensions** (score both the REFERENCE and the PROPOSED LiorTales execution, 1–10 each):
+
+HOOK
+CURIOSITY
+EMOTION
+HUMAN_REALISM
+STORY
+SCROLL_STOP_POWER
+PRODUCT_DESIRE
+MEMORABILITY
+
+**Pass condition**: the LiorTales execution must show credible improvement over the reference in at least 3 of these 8 dimensions. A merely-acceptable score on its own is not sufficient.
+
+**Fail condition**: fewer than 3 improved dimensions → STATUS: FAIL → route back to Agent 03. The concept must not reach Agent 04, Agent 05, or any generation tool while failing.
+
+This rubric is applied at two distinct points in a run:
+
+1. **Pre-production** (Agent 07, before Agent 04/05 begin work): reference vs. Creative Blueprint.
+2. **Post-production** (Agent 07, after generation): the finished asset is checked for fidelity to the *approved* blueprint (did the event survive generation?) — this is Agent 07's Concept Fidelity QC area, not a re-run of the comparative score from scratch.
