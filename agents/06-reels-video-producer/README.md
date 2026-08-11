@@ -121,6 +121,8 @@ If video generation mutates, distorts, or reinterprets the cover: do not accept 
 
 If the named approved cover asset cannot be accessed: `PRODUCT_ASSET_MISSING` — STOP and report through Agent 01 only. Never substitute another book.
 
+**Handheld shots are a separate capability gate.** The same principle applies to video: if the scene requires a person to physically grip the book cover-first, Agent 06 must confirm the available tools can simultaneously preserve the exact cover, realistic book geometry, natural finger occlusion, and believable contact shadows/lighting across frames (`workflows/pipeline-control-rules.md` §10) before accepting the shot. If they cannot: return `HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED` through Agent 01 rather than accepting a flat-tracked composite as realistic.
+
 ## VIDEO QUALITY STANDARD
 
 Reject or revise outputs with:
@@ -254,6 +256,7 @@ KNOWN_LIMITATIONS
 - Report blocks to Agent 01 only; never route fallback work directly to Agent 05.
 - Never let generation substitute or redraw an approved book cover — insert/track the exact asset instead.
 - PRODUCT_ASSET_MISSING is a hard stop — report to Agent 01, never substitute another book.
+- Never accept a handheld book composite as physically realistic unless exact cover, geometry, occlusion, and shadow are all genuinely satisfied — otherwise return HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED (`workflows/pipeline-control-rules.md` §10).
 - Maintain child safety.
 - Maintain visual continuity.
 - Reject obvious AI defects.

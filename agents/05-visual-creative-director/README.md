@@ -180,6 +180,8 @@ Production method: do not ask Canva, Kling, or any generation tool to recreate t
 
 If the named approved cover asset cannot be accessed: `PRODUCT_ASSET_MISSING` — STOP and report through Agent 01. Never substitute another book.
 
+**Handheld shots are a separate capability gate.** If the blueprint requires a person to physically grip the book cover-first, Agent 05 must confirm — before generating — that the available tools can simultaneously preserve the exact cover, realistic book geometry, natural finger occlusion, and believable contact shadows (`workflows/pipeline-control-rules.md` §10). Flat placement via position/rotation/crop only, without true perspective warp or masking, is not sufficient for a handheld claim even if a candidate image looks plausible at a glance — verify against all four criteria, not just cover fidelity. If they cannot all be met: return `HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED` through Agent 01 rather than shipping a flat-paste composite. Do not treat this as a failure to hide — Agent 01 routes the same concept back through Agent 03 for a non-handheld redesign.
+
 ## STATIC CONTENT RESPONSIBILITY
 
 For:
@@ -336,3 +338,4 @@ PRODUCTION_STATUS
 - Preserve the full Creative Blueprint in the actual production prompt — never collapse it into a generic atmosphere description.
 - Never redraw, regenerate, or approximate an approved book cover — composite the exact Canva asset instead.
 - PRODUCT_ASSET_MISSING is a hard stop — never substitute another book for a missing approved cover.
+- Never ship a handheld book composite as physically realistic unless exact cover, geometry, occlusion, and shadow are all genuinely satisfied — otherwise return HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED (`workflows/pipeline-control-rules.md` §10).
