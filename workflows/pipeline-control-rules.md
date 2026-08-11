@@ -37,10 +37,12 @@ Routing (applies to any agent that detects a block, not only Agent 07):
 - No other agent (04, 05, 06, 07, 08) may independently replace the approved concept.
 - Any material change to the approved concept, once production has started, must route back through Agent 01 for re-approval before continuing.
 
-## 4. KLING / VIDEO FALLBACK — CANONICAL ROUTE
+## 4. KLING/REMOTION VIDEO FALLBACK — CANONICAL ROUTE
 
-- Agent 06 attempts video production only when an approved video execution tool is available and authorized.
-- If video execution is unavailable, fails, or lacks credits/quota/access: Agent 06 sets VIDEO_PRODUCTION_BLOCKED = TRUE with BLOCK_REASON and reports to Agent 01 ONLY. Agent 06 does not route directly to Agent 05.
+- Agent 06 attempts video production only when an approved video execution tool is available and authorized. See §11 for how Agent 06 selects between KLING, REMOTION, and KLING_PLUS_REMOTION for a given concept — that selection happens before this fallback chain is relevant.
+- If Kling is unavailable, fails, or lacks credits/quota/access: Agent 06 does not go straight to a static fallback. It first checks whether the SAME approved concept can be produced with Remotion alone from existing approved assets (previously generated clips, approved covers/photos, typography, captions, transitions, music) — no new AI motion generation required.
+  - If yes: produce it with Remotion. This is a full video deliverable, not a degraded fallback — Agent 06 returns VIDEO_READY_FOR_QC through the normal path, `PRODUCTION_TOOL: REMOTION`.
+  - If no (the concept genuinely requires AI-generated motion/footage that doesn't exist and can't be assembled from approved material): Agent 06 sets VIDEO_PRODUCTION_BLOCKED = TRUE with BLOCK_REASON and reports to Agent 01 ONLY. Agent 06 does not route directly to Agent 05.
 - Agent 01 then routes the SAME approved concept to Agent 05 for the strongest feasible static alternative (carousel, single-image post, or Story package) — whichever best preserves the original objective.
 - The fallback must preserve: the same core concept, the same campaign objective, the same product truth — unless Agent 01 explicitly authorizes a strategy change (in which case it routes back through Agent 03 first).
 - The fallback package still passes through Agent 04/05 as needed and then Agent 07 QC before owner review.
@@ -191,3 +193,21 @@ This is not a run-level block and must not stop the content workflow or be escal
 **Reserved for real handheld shots:** a hand genuinely gripping the exact book cover, with correct geometry, occlusion, and shadow, is reserved for (a) an actual photograph of a real printed LiorTales proof copy, or (b) a production tool verified to support true perspective-correct compositing with occlusion masking. The OpenAI scene-generation + deterministic cover-compositing pipeline (`shared/production-tools/openai-image-pipeline.md`) is a candidate for (b) — it is not the prior Canva/Kling flat-overlay toolset — but passing through that pipeline is not itself a pass: each shot still must clear the four-criteria Capability Test above before being accepted as handheld-realistic, including confirming an occlusion mask was actually supplied and used.
 
 Referenced by Agents 03, 05, 06, and 07 rather than duplicated.
+
+## 11. VIDEO PRODUCTION ROUTE SELECTION (KLING / REMOTION)
+
+Canonical routing logic for Agent 06 choosing how to produce a video asset. Remotion (`shared/production-tools/remotion-video-pipeline.md`) is an additional execution tool alongside KlingAI — not a replacement, and not a second, parallel video-production architecture. Both tools operate inside Agent 06's existing ownership, inputs, quality standards, PRODUCT ASSET LOCK obligations (§9, §10), and handoff-to-Agent-07 contract; only `PRODUCTION_TOOL` changes.
+
+**KLING** — use when the concept requires AI-generated realistic human motion that doesn't already exist: cinematic family scenes, gifting moments, children interacting naturally, or other footage that must be generated rather than assembled from existing material.
+
+**REMOTION** — use when the video can be produced by programmatic assembly of already-existing approved material: approved LiorTales book covers, product images, photos, previously generated clips, typography, captions/subtitles, transitions, motion graphics, slide/carousel-style sequences, hook/CTA/end-card overlays, and music/audio where available. Remotion is deterministic, code-driven composition — the same category of tool as the deterministic image compositor, not a generative model.
+
+**KLING_PLUS_REMOTION** — use when a concept needs both: Kling generates the AI motion/footage first, then Remotion assembles the finished Reel from that footage plus captions, typography, transitions, hook/CTA overlays, music, and any approved product assets, and renders the final file.
+
+**Selection is Agent 06's to make**, based on the Creative Blueprint and Visual/Video brief it receives — not a question to route to Daryna. Route to Daryna only if the brief itself is genuinely ambiguous about whether new footage must be generated (a missing-input problem, handled as `VISUAL_INPUT_INCOMPLETE`/`QC_INPUT_INCOMPLETE` per the normal missing-input routing) — not as a routine production choice.
+
+**PRODUCT ASSET LOCK applies identically regardless of route.** Remotion must place the exact approved cover/asset file exactly as provided — never redraw, regenerate, approximate, or replace it. Remotion's deterministic placement model means it cannot itself introduce a generative cover-fidelity failure, but Agent 06 must still supply the exact registered source file, not a description of it, and Agent 07 QC (areas 15/16) applies at whatever the finished asset shows regardless of which tool(s) produced it.
+
+**Fallback interaction:** see §4. If Kling is blocked, Agent 06 checks REMOTION feasibility on the same concept before escalating to Agent 01 for a static fallback — Remotion is attempted before the concept is downgraded to static, not after.
+
+Referenced by Agent 06, and by Agent 07 when reviewing `PRODUCTION_TOOL` on a video package.

@@ -65,13 +65,40 @@ When appropriate, structure short-form video around:
 
 Do not force this structure when another structure better supports the strategy.
 
+## PRODUCTION ROUTE SELECTION
+
+Agent 06 has two execution tools — KlingAI and Remotion — used together under one video-production architecture, not as competing systems. Before producing anything, classify the concept into exactly one route (canonical logic: `workflows/pipeline-control-rules.md` §11):
+
+- **KLING** — the concept requires AI-generated realistic human motion that doesn't already exist: cinematic family scenes, gifting moments, children interacting naturally, or other footage that must be generated.
+- **REMOTION** — the video can be assembled programmatically from material that already exists: approved covers, product images, photos, previously generated clips, typography, captions, transitions, motion graphics, slides/carousels, hook/CTA/end-card overlays, music. See `shared/production-tools/remotion-video-pipeline.md`.
+- **KLING_PLUS_REMOTION** — Kling generates the footage, Remotion assembles/edits/captions/animates and renders the final Reel from it.
+
+This is Agent 06's call to make from the brief it receives, not a question for Daryna — route to Daryna only if the brief is genuinely ambiguous about whether new footage must be generated (a `VISUAL_INPUT_INCOMPLETE`-style block), not as a routine production decision.
+
 ## KLINGAI
 
-Agent 06 attempts video production only when an approved video execution tool is available and authorized.
+Agent 06 attempts Kling video production only when an approved video execution tool is available and authorized.
 
 Never claim a Kling generation succeeded unless the tool confirms success.
 
 Never repeatedly retry a blocked generation without reason.
+
+## REMOTION
+
+Remotion is a code-driven assembly and rendering tool, not a generative model — it places existing clips/images/text/audio deterministically rather than generating new footage. Use it per the ROUTE SELECTION above, for the REMOTION and KLING_PLUS_REMOTION routes.
+
+Implementation and rendering are driven by the installed Remotion skills — treat them as the source of truth, do not improvise Remotion API usage from general knowledge when a skill covers it:
+
+- `remotion-create` — scaffold a project/composition if one doesn't exist for this run.
+- `remotion-markup` — transitions, effects, sequencing, typography, images, audio, video editing.
+- `remotion-captions` — subtitles/captions from Agent 04's approved copy.
+- `remotion-multimedia` — clip/audio duration and dimensions before assembling a timeline.
+- `remotion-render` — export the final file (`npx remotion render`).
+- `remotion-studio` — local preview/sanity-check before render.
+
+Full contract: `shared/production-tools/remotion-video-pipeline.md`.
+
+Never claim a render succeeded unless the render tool confirms success and the output file exists.
 
 ## KLING CREDIT / BALANCE / QUOTA FALLBACK
 
@@ -83,7 +110,10 @@ If KlingAI cannot generate because of:
 - account access unavailable;
 - generation access blocked;
 
-set:
+Agent 06 does **not** go straight to a static fallback. First check whether the SAME approved concept can be produced with Remotion alone, using only existing approved assets (no new AI motion generation required):
+
+- **If yes** → produce it with Remotion. This is a full deliverable, not a degraded fallback — return `VIDEO_READY_FOR_QC` through the normal path with `PRODUCTION_TOOL: REMOTION`, same as any other run.
+- **If no** (the concept genuinely needs generated motion/footage that doesn't exist and can't be assembled) → set:
 
 VIDEO_PRODUCTION_BLOCKED = TRUE
 
@@ -120,6 +150,8 @@ When the approved Creative Blueprint depicts a LiorTales book, the named CANVA_A
 If video generation mutates, distorts, or reinterprets the cover: do not accept the output as-is. Generate the human motion separately and insert/track the exact approved cover asset onto the book during editing/compositing, rather than letting the generation tool render the cover itself.
 
 If the named approved cover asset cannot be accessed: `PRODUCT_ASSET_MISSING` — STOP and report through Agent 01 only. Never substitute another book.
+
+**On the REMOTION route:** Remotion places whatever file it's given exactly as given — it cannot itself regenerate or reinterpret cover artwork, since it doesn't generate pixels. That does not relax this rule; it changes where the risk sits. Agent 06 must load the exact registered file from `product-assets/approved-master-covers/` (verified via `tools/openai-image-pipeline/covers_registry.py`), never a description, a re-export, or a lower-fidelity stand-in. Resizing, positioning, cropping to frame, and animating the cover's entrance/exit are fine; altering the artwork's pixels is not.
 
 **Image keyframes for image-to-video.** When a Kling image-to-video shot needs a starting keyframe that shows an approved LiorTales book, produce that keyframe with the same pipeline Agent 05 uses for static assets (`shared/production-tools/openai-image-pipeline.md`, tooling in `tools/openai-image-pipeline/`) — generate the scene, then deterministically composite the exact cover onto it — before handing the keyframe to Kling. Never let Kling itself generate or motion-interpolate the cover artwork. This applies only to keyframe production; it does not change how Kling generates motion, voiceover, or the rest of the video, and does not apply when no keyframe compositing is involved (e.g. pure text-to-video with no book in frame).
 
@@ -209,7 +241,7 @@ Return:
 RUN_ID
 PLATFORM
 FORMAT
-PRODUCTION_TOOL
+PRODUCTION_TOOL (KLING / REMOTION / KLING_PLUS_REMOTION)
 VIDEO_STATUS
 ASSETS_USED
 SCENES_PRODUCED
@@ -252,7 +284,7 @@ KNOWN_LIMITATIONS
 - Do not bypass Agent 05 visual direction.
 - Do not materially rewrite Agent 04 copy.
 - Never fabricate successful tool actions.
-- Never hide Kling failure.
+- Never hide Kling or Remotion render failure.
 - Never switch to an unrelated topic because video production failed.
 - Preserve same-topic fallback.
 - Report blocks to Agent 01 only; never route fallback work directly to Agent 05.
@@ -263,3 +295,7 @@ KNOWN_LIMITATIONS
 - Maintain visual continuity.
 - Reject obvious AI defects.
 - Do not imitate protected styles.
+- Remotion is an additional execution tool alongside Kling — never a replacement for it, and never a second, parallel video-production architecture.
+- Select KLING / REMOTION / KLING_PLUS_REMOTION from the concept's actual requirements — do not ask Daryna to choose the tool unless the brief itself is genuinely ambiguous about whether new footage must be generated.
+- Never let Remotion (or any assembly step) alter, filter, stylize, or regenerate an approved cover's artwork — place the exact registered file only.
+- When Kling is blocked, check Remotion feasibility on the same concept before reporting VIDEO_PRODUCTION_BLOCKED — Remotion is attempted before the concept is downgraded to static, not after.
