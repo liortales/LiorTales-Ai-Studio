@@ -1,11 +1,11 @@
 {
-  "_note": "Registry of LiorTales approved master book covers. Source of truth for which titles/asset IDs exist: shared/product/product-bible.md \u00a718 in the repo root. Do not add, remove, or retitle an entry here without updating that document first. sha256 stays null until a human places a verified local copy at local_path and runs `python3 covers_registry.py pin \"<title>\"` -- see assets/approved-covers/README.md.",
+  "_note": "Registry of LiorTales approved master book covers. Source of truth for which titles/asset IDs exist: shared/product/product-bible.md §18 in the repo root. Do not add, remove, or retitle an entry here without updating that document first. Master cover files are versioned and committed under /product-assets/approved-master-covers/ -- see that folder's README. sha256 stays null until a human places a verified file there and runs `python3 covers_registry.py pin \"<title>\"`.",
   "covers": [
     {
       "id": "01",
       "title": "Mia and the Missing Star",
       "canva_asset_id": "MAHR7spCO30",
-      "local_path": "assets/approved-covers/mia-and-the-missing-star.png",
+      "local_path": "../../product-assets/approved-master-covers/mia-and-the-missing-star.png",
       "sha256": null,
       "pinned_at": null
     },
@@ -13,7 +13,7 @@
       "id": "02",
       "title": "Adam, Lev & Olivia: Monsters from the Stars",
       "canva_asset_id": "MAHR7hILHjs",
-      "local_path": "assets/approved-covers/adam-lev-and-olivia-monsters-from-the-stars.png",
+      "local_path": "../../product-assets/approved-master-covers/adam-lev-and-olivia-monsters-from-the-stars.png",
       "sha256": null,
       "pinned_at": null
     },
@@ -21,7 +21,7 @@
       "id": "03",
       "title": "Rostislav: The Glitch in the Green Forest",
       "canva_asset_id": "MAHR7hdvibw",
-      "local_path": "assets/approved-covers/rostislav-the-glitch-in-the-green-forest.png",
+      "local_path": "../../product-assets/approved-master-covers/rostislav-the-glitch-in-the-green-forest.png",
       "sha256": null,
       "pinned_at": null
     },
@@ -29,7 +29,7 @@
       "id": "04",
       "title": "Olivia and the Enchanted Bunny",
       "canva_asset_id": "MAHR7kjIXWA",
-      "local_path": "assets/approved-covers/olivia-and-the-enchanted-bunny.png",
+      "local_path": "../../product-assets/approved-master-covers/olivia-and-the-enchanted-bunny.png",
       "sha256": "868c884ec37e4dfa06d22d500cc4990c18ad646c4b1ee30d5a3c73d9a1909509",
       "pinned_at": "2026-08-11T06:12:25.483783+00:00"
     }

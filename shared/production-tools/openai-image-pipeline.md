@@ -71,11 +71,16 @@ source file's own pixels counts.
 Three layers, from `tools/openai-image-pipeline/`:
 
 1. **Construction-time refusal.** `compose_cover.py` will not run against a
-   cover title unless the local cached file's SHA-256 hash matches a value
-   a human explicitly pinned (`covers_registry.py pin`) after visually
+   cover title unless the versioned, committed file in
+   `product-assets/approved-master-covers/` matches the SHA-256 hash a
+   human explicitly pinned (`covers_registry.py pin`) after visually
    verifying it against the Canva registry
    (`shared/product/product-bible.md` §18). Missing file, unpinned file, or
-   hash mismatch all hard-stop before any image is written.
+   hash mismatch all hard-stop before any image is written. These files are
+   committed to this private repo rather than gitignored, because
+   production runs in ephemeral containers that only have what git
+   provides — the hash pin is what protects against silent tampering or
+   corruption, not exclusion from version control.
 2. **Audit manifest.** Every successful composite writes a
    `<output>.manifest.json` recording the title, Canva asset ID, the exact
    cover file hash used, the corners, whether an occlusion mask was

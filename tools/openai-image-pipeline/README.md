@@ -44,7 +44,7 @@ Flags: `--model` (default `gpt-image-1`), `--size`
 ## Stage B — composite the exact cover (no OpenAI call, no network)
 
 First, a cover must be registered and pinned once — see
-`assets/approved-covers/README.md`. Then, for each generated scene, find
+`../../product-assets/approved-master-covers/README.md`. Then, for each generated scene, find
 the four corners (in pixels, TL → TR → BR → BL) of the book-cover plane
 visible in that specific image, and run:
 
