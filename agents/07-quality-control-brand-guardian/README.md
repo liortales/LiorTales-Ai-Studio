@@ -389,6 +389,36 @@ Do not approve on the theory that Product Asset Identity (area 15) already passe
 
 This area does not apply when the book is not hand-gripped (resting, propped, standing, or otherwise visible without a hand holding it) — those placements remain governed by QC area 15 and §9 alone.
 
+### 17. CAROUSEL VISUAL STORYTELLING
+
+Applies whenever the package's format is a carousel. Checks whether the finished carousel actually delivers image-led, emotionally engaged, scroll-stopping social content — the standard defined in `shared/brand/visual-identity-guide.md` §12 — not just structural correctness.
+
+FAIL if any of:
+
+- more than 2 slides are mostly text with no meaningful image;
+- the first slide has no strong visual/emotional hook;
+- the design reads as a presentation deck rather than social content;
+- all slides share nearly identical composition (e.g. every slide is centered text on a flat colored background);
+- human emotion is visibly absent throughout;
+- the product/cover appears pasted unnaturally onto its slide;
+- visual hierarchy is weak (unclear what to look at first).
+
+PASS only if all of:
+
+- the first slide is scroll-stopping;
+- imagery carries the story, not just decorates it;
+- emotional reactions are visibly present;
+- visual rhythm changes across slides (shot type, layout, or treatment varies);
+- the product/cover is integrated naturally into its slide;
+- text is readable on mobile;
+- the carousel reads as social content, not a document.
+
+Any FAIL:
+
+STATUS: CAROUSEL_VISUAL_REVISION_REQUIRED
+
+Route to Agent 05 under the standard revision-cycle rule (`workflows/pipeline-control-rules.md` §1). This area evaluates storytelling/composition quality specifically — it does not replace QC area 5 (technical visual defects) or area 15 (Product Asset Identity, when a cover is depicted), both of which still apply independently to carousel packages.
+
 ## QC SCORING
 
 Score relevant categories from 1–10:
@@ -516,6 +546,7 @@ COMMERCIAL_QUALITY_SCORE
 CONCEPT_FIDELITY_SCORE
 PRODUCT_ASSET_IDENTITY_RESULT (PASS / PRODUCT_FIDELITY_FAIL, when a book is depicted)
 HANDHELD_REALISM_RESULT (PASS / VISUAL_REALISM_FAIL / N/A, when a book is hand-gripped)
+CAROUSEL_VISUAL_RESULT (PASS / CAROUSEL_VISUAL_REVISION_REQUIRED / N/A, when format is carousel)
 
 COMPETITOR_COMPARISON_RESULT (pre-production gate outcome, when applicable)
 CRITICAL_FAILURES
@@ -546,4 +577,5 @@ QC_NOTES
 - Never approve a generated asset that diluted its approved Creative Blueprint — resolve concept-fidelity failures through regeneration, not cosmetic polishing.
 - Never approve content where the book cover fails any Product Asset Identity check — route back to production.
 - Never approve a handheld book composite that fails geometry, occlusion, contact shadows, or reads as a pasted sticker — route as HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED (§10), not as an ordinary revision cycle.
+- Never approve a carousel that fails QC area 17 (flat text-only slides, weak first-slide hook, deck-like sameness) on the theory that the copy or product placement is otherwise correct — route as CAROUSEL_VISUAL_REVISION_REQUIRED.
 - QC_APPROVED means ready for owner review, NOT automatically ready for publication.
