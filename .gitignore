@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# Approved master book covers ARE committed (see /product-assets/approved-master-covers/)
+# -- they are product IP, not secrets, and cloud containers only have what
+# git provides. Integrity is enforced by covers_registry.json's pinned
+# SHA-256 hashes, not by keeping the files out of git.
+
+# Never commit a local secrets file if one is ever added for convenience
+.env
+*.env

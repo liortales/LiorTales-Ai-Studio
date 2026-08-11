@@ -357,11 +357,37 @@ COVER_LAYOUT_MATCH: PASS/FAIL
 NO_AI_COVER_SUBSTITUTION: PASS/FAIL
 NO_GENERATIVE_DISTORTION: PASS/FAIL
 
+When the asset was produced via the OpenAI scene-generation + deterministic compositing pipeline (`shared/production-tools/openai-image-pipeline.md`), also require the compositing manifest (`*.manifest.json`, written alongside the image by `compose_cover.py`) as evidence:
+
+MANIFEST_PRESENT: PASS/FAIL
+MANIFEST_METHOD_DETERMINISTIC (`compositing_method: deterministic_perspective_transform` and `generative_model_touched_cover_pixels: false`): PASS/FAIL
+
+A missing manifest, or one showing any other compositing method, defaults NO_AI_COVER_SUBSTITUTION to FAIL — do not accept a visual-inspection-only claim of fidelity for pipeline output. Where feasible, corroborate by running `tools/openai-image-pipeline/verify_composite.py`, which re-derives the expected cover region from the registered source asset and flags drift; a verifier FAIL is itself a PRODUCT_FIDELITY_FAIL.
+
 Any FAIL:
 
 STATUS: PRODUCT_FIDELITY_FAIL
 
 Do not approve. Do not publish. Return to production (Agent 05 for static, Agent 06 for video) under the standard revision-cycle rule (`workflows/pipeline-control-rules.md` §1). Canonical asset-lock rule: `workflows/pipeline-control-rules.md` §9.
+
+### 16. HANDHELD PHYSICAL REALISM
+
+Whenever the package shows a person physically gripping an approved LiorTales book cover-first, check the composite against all four criteria in the Handheld Product Compositing Capability Gate (`workflows/pipeline-control-rules.md` §10), not cover fidelity alone:
+
+BOOK_GEOMETRY_BELIEVABLE (visible thickness/edges/spine, not a flat card): PASS/FAIL
+HAND_OCCLUSION_NATURAL (fingers convincingly in front of/wrapped around the book, not floating over it): PASS/FAIL
+CONTACT_SHADOWS_BELIEVABLE (shadows and lighting match the surrounding scene): PASS/FAIL
+NO_STICKER_LOOK (reads as one photographed object, not a flat graphic pasted onto a photo): PASS/FAIL
+
+When produced via the pipeline in `shared/production-tools/openai-image-pipeline.md`, HAND_OCCLUSION_NATURAL requires the manifest's `occlusion_mask_used` to be `true` — `false` means no occlusion was applied and this criterion is FAIL regardless of how the composite looks at a glance.
+
+Any FAIL:
+
+STATUS: VISUAL_REALISM_FAIL
+
+Do not approve on the theory that Product Asset Identity (area 15) already passed — a handheld composite can pass every cover-fidelity check and still fail physical realism. Do not return this to Agent 05/06 for another attempt at the same handheld compositing method; route it as HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED per §10, so Agent 01 sends the concept back through Agent 03 for a non-handheld redesign instead of consuming revision cycles on an unsupported technique.
+
+This area does not apply when the book is not hand-gripped (resting, propped, standing, or otherwise visible without a hand holding it) — those placements remain governed by QC area 15 and §9 alone.
 
 ## QC SCORING
 
@@ -399,6 +425,7 @@ The following automatically prevent approval:
 - broken/unusable visual;
 - broken/unusable video;
 - product asset substitution (invented, altered, or generic-AI book cover in place of an approved master cover);
+- a handheld book composite presented as physically realistic when it fails book geometry, hand occlusion, contact shadows, or reads as a pasted sticker (§10);
 - publication attempted without required approval.
 
 ## QC DECISIONS
@@ -488,6 +515,7 @@ ORIGINALITY_SCORE
 COMMERCIAL_QUALITY_SCORE
 CONCEPT_FIDELITY_SCORE
 PRODUCT_ASSET_IDENTITY_RESULT (PASS / PRODUCT_FIDELITY_FAIL, when a book is depicted)
+HANDHELD_REALISM_RESULT (PASS / VISUAL_REALISM_FAIL / N/A, when a book is hand-gripped)
 
 COMPETITOR_COMPARISON_RESULT (pre-production gate outcome, when applicable)
 CRITICAL_FAILURES
@@ -517,4 +545,5 @@ QC_NOTES
 - Never send a blueprint to Agent 04/05 or any generation tool after a Competitor Comparison Gate FAIL.
 - Never approve a generated asset that diluted its approved Creative Blueprint — resolve concept-fidelity failures through regeneration, not cosmetic polishing.
 - Never approve content where the book cover fails any Product Asset Identity check — route back to production.
+- Never approve a handheld book composite that fails geometry, occlusion, contact shadows, or reads as a pasted sticker — route as HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED (§10), not as an ordinary revision cycle.
 - QC_APPROVED means ready for owner review, NOT automatically ready for publication.

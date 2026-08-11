@@ -152,10 +152,42 @@ Generic wording ("a personalized children's book") is invalid whenever a real Li
 
 **Never regenerate the cover.** The approved cover image must never be redrawn, regenerated, approximated, redesigned, recolored, retitled, re-typeset, given different characters, or substituted with a similar or generic AI-generated book. The complete existing cover image is immutable.
 
-**Generation method:** if a generative tool (Canva, Kling, or other) cannot preserve the approved cover exactly, do not ask it to recreate the book artwork. Instead: generate the surrounding human scene/motion, preserving a suitable visible book surface or placement, then composite the exact approved Canva cover asset onto it — perspective, scale, and masking adjustments only. For video, if generation mutates the cover, generate the human motion separately and insert/track the exact approved cover asset during editing.
+**Generation method:** never ask a generative tool (Canva, Kling, OpenAI, or other) to recreate, redraw, approximate, or edit the cover artwork itself — this includes masked/inpainting-style generative edits confined to the cover region. Masking a region so a generative model can fill it is not compositing, and is forbidden for cover pixels regardless of how small the masked area is. The only acceptable method is: generate the surrounding human scene/motion with a neutral placeholder book-cover plane, then deterministically composite the exact approved cover asset onto that plane — a geometric transform (e.g. perspective warp) of the source file's own pixels, never a second generative pass over the cover region. Canonical implementation and contract: `shared/production-tools/openai-image-pipeline.md`. For video, if generation mutates the cover, generate the human motion separately and insert/track the exact approved cover asset during editing using the same deterministic method.
 
 **PRODUCT_ASSET_MISSING**: if the selected approved cover asset cannot be accessed, STOP. Never substitute another book. Report as a block per §2 routing (to Agent 01).
 
 **QC**: Agent 07 verifies the final asset against the named Canva source asset — see the Product Asset Identity QC area in `agents/07-quality-control-brand-guardian/README.md`.
+
+Referenced by Agents 03, 05, 06, and 07 rather than duplicated.
+
+## 10. HANDHELD PRODUCT COMPOSITING — CAPABILITY GATE
+
+Applies whenever a concept requires a person to physically grip/hold an approved LiorTales book, cover-first, in frame — distinct from the book resting, standing, propped, or otherwise visible without being gripped by a hand. The general §9 compositing method ("perspective, scale, and masking adjustments only") is proven reliable for placements where the book is not hand-gripped; it is not, by itself, sufficient for handheld shots.
+
+**Capability test** — before any handheld concept proceeds to generation, confirm the currently available production tools can simultaneously preserve all four of:
+
+1. the exact approved cover (§9 — unaltered pixels);
+2. realistic physical book geometry (thickness, edges, spine/page block);
+3. natural hand/finger occlusion (fingers convincingly in front of or wrapped around the book);
+4. believable contact shadows and scene-matched lighting.
+
+**If the available tools cannot verifiably satisfy all four simultaneously:**
+
+status = HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED
+
+This is not a run-level block and must not stop the content workflow or be escalated to Daryna as a failure. The agent that would have produced the handheld shot (Agent 05 for static, Agent 06 for video) reports HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED to Agent 01, which routes the SAME approved concept back through Agent 03 for an automatic redesign into the strongest non-handheld composition that preserves the same emotional event, people, and payoff.
+
+**Redesign, do not downgrade.** The people, reaction, story, surprise, humor, and scroll-stop power of the original concept must remain equally strong. Preferred non-handheld compositions (select whichever best fits the concept, not a fixed order):
+
+- the approved book standing or propped on a table/surface while the child/family reacts beside it;
+- the approved book revealed inside an open gift box;
+- the book lying naturally on a bed/table while the child points at or gestures toward it;
+- the child mid-unwrapping, with the approved book already visible beside/in front of them, not yet gripped;
+- the book positioned in the foreground (resting, not held) while the parent/child emotional interaction happens behind or around it;
+- other arrangements where the exact approved cover remains a separate, cleanly composited flat product placement — not held in a hand — and still reads as physically believable.
+
+**Never invent a replacement cover to enable a handheld shot.** If no non-handheld redesign can preserve both the required emotional event and the exact approved cover, that is a §9 PRODUCT_ASSET_MISSING-class stop — not a license to substitute AI-generated book art.
+
+**Reserved for real handheld shots:** a hand genuinely gripping the exact book cover, with correct geometry, occlusion, and shadow, is reserved for (a) an actual photograph of a real printed LiorTales proof copy, or (b) a production tool verified to support true perspective-correct compositing with occlusion masking. The OpenAI scene-generation + deterministic cover-compositing pipeline (`shared/production-tools/openai-image-pipeline.md`) is a candidate for (b) — it is not the prior Canva/Kling flat-overlay toolset — but passing through that pipeline is not itself a pass: each shot still must clear the four-criteria Capability Test above before being accepted as handheld-realistic, including confirming an occlusion mask was actually supplied and used.
 
 Referenced by Agents 03, 05, 06, and 07 rather than duplicated.

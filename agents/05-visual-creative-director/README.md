@@ -176,9 +176,20 @@ Whenever the Creative Blueprint depicts a LiorTales book, Agent 05 receives BOOK
 
 The approved cover is a locked product asset. Never redraw, regenerate, approximate, redesign, recolor, retitle, re-typeset, give it different characters, or substitute it with a similar or generic AI-generated book. The complete existing cover image is immutable.
 
-Production method: do not ask Canva, Kling, or any generation tool to recreate the book artwork. Generate the surrounding human scene, preserving a suitable visible book surface or placement, then composite the exact approved Canva cover asset onto it — perspective, scale, and masking adjustments only.
+Production method: canonical rule and required technique in `workflows/pipeline-control-rules.md` §9 — never ask any generation tool to recreate, redraw, or masked-edit the cover artwork, including inpainting-style edits confined to the cover region. Deterministic geometric compositing of the exact source asset onto a generated scene is the only acceptable method.
 
 If the named approved cover asset cannot be accessed: `PRODUCT_ASSET_MISSING` — STOP and report through Agent 01. Never substitute another book.
+
+### PRIMARY STATIC PRODUCTION ROUTE — OPENAI SCENE GENERATION + DETERMINISTIC COMPOSITING
+
+For static content depicting an approved LiorTales book, the default production route is the two-stage pipeline in `shared/production-tools/openai-image-pipeline.md` (tooling: `tools/openai-image-pipeline/`):
+
+1. Generate the surrounding scene with `generate_scene.py` — people, hands, physical book geometry, lighting — describing a neutral/placeholder book-cover plane, never the actual title or artwork.
+2. Composite the exact approved cover onto that plane with `compose_cover.py` — a deterministic perspective transform of the registered, hash-verified source file only.
+
+Attach the resulting `*.manifest.json` to the handoff to Agent 07 as required evidence (QC area 15). Producing a cover composite through any other route (e.g. a flat layout element placed over an unrelated photo) is not an acceptable substitute once this pipeline is available for the shot.
+
+**Handheld shots are a separate capability gate.** If the blueprint requires a person to physically grip the book cover-first, Agent 05 must confirm — before generating — that the available tools can simultaneously preserve the exact cover, realistic book geometry, natural finger occlusion, and believable contact shadows (`workflows/pipeline-control-rules.md` §10). This requires actually supplying and using `compose_cover.py`'s `--occlusion-mask` — a flat placement via position/rotation/crop only, without true perspective warp or verified occlusion, is not sufficient for a handheld claim even if a candidate image looks plausible at a glance. If they cannot all be met: return `HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED` through Agent 01 rather than shipping a flat-paste composite. Do not treat this as a failure to hide — Agent 01 routes the same concept back through Agent 03 for a non-handheld redesign.
 
 ## STATIC CONTENT RESPONSIBILITY
 
@@ -336,3 +347,4 @@ PRODUCTION_STATUS
 - Preserve the full Creative Blueprint in the actual production prompt — never collapse it into a generic atmosphere description.
 - Never redraw, regenerate, or approximate an approved book cover — composite the exact Canva asset instead.
 - PRODUCT_ASSET_MISSING is a hard stop — never substitute another book for a missing approved cover.
+- Never ship a handheld book composite as physically realistic unless exact cover, geometry, occlusion, and shadow are all genuinely satisfied — otherwise return HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED (`workflows/pipeline-control-rules.md` §10).
