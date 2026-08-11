@@ -1,0 +1,37 @@
+{
+  "_note": "Registry of LiorTales approved master book covers. Source of truth for which titles/asset IDs exist: shared/product/product-bible.md §18 in the repo root. Do not add, remove, or retitle an entry here without updating that document first. sha256 stays null until a human places a verified local copy at local_path and runs `python3 covers_registry.py pin \"<title>\"` -- see assets/approved-covers/README.md.",
+  "covers": [
+    {
+      "id": "01",
+      "title": "Mia and the Missing Star",
+      "canva_asset_id": "MAHR7spCO30",
+      "local_path": "assets/approved-covers/mia-and-the-missing-star.png",
+      "sha256": null,
+      "pinned_at": null
+    },
+    {
+      "id": "02",
+      "title": "Adam, Lev & Olivia: Monsters from the Stars",
+      "canva_asset_id": "MAHR7hILHjs",
+      "local_path": "assets/approved-covers/adam-lev-and-olivia-monsters-from-the-stars.png",
+      "sha256": null,
+      "pinned_at": null
+    },
+    {
+      "id": "03",
+      "title": "Rostislav: The Glitch in the Green Forest",
+      "canva_asset_id": "MAHR7hdvibw",
+      "local_path": "assets/approved-covers/rostislav-the-glitch-in-the-green-forest.png",
+      "sha256": null,
+      "pinned_at": null
+    },
+    {
+      "id": "04",
+      "title": "Olivia and the Enchanted Bunny",
+      "canva_asset_id": "MAHR7kjIXWA",
+      "local_path": "assets/approved-covers/olivia-and-the-enchanted-bunny.png",
+      "sha256": null,
+      "pinned_at": null
+    }
+  ]
+}

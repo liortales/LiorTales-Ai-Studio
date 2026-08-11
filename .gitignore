@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+
+# OpenAI image pipeline -- local runtime cache of approved cover source
+# files. These are a verified local copy of Canva-hosted product assets,
+# never a second source of truth -- keep them out of git to avoid drift
+# and repo bloat. Integrity is enforced by
+# tools/openai-image-pipeline/covers_registry.json's pinned SHA-256 hashes,
+# not by committing the files.
+tools/openai-image-pipeline/assets/approved-covers/*
+!tools/openai-image-pipeline/assets/approved-covers/README.md
+
+# Never commit a local secrets file if one is ever added for convenience
+.env
+*.env

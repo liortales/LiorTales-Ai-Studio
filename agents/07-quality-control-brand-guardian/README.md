@@ -357,6 +357,13 @@ COVER_LAYOUT_MATCH: PASS/FAIL
 NO_AI_COVER_SUBSTITUTION: PASS/FAIL
 NO_GENERATIVE_DISTORTION: PASS/FAIL
 
+When the asset was produced via the OpenAI scene-generation + deterministic compositing pipeline (`shared/production-tools/openai-image-pipeline.md`), also require the compositing manifest (`*.manifest.json`, written alongside the image by `compose_cover.py`) as evidence:
+
+MANIFEST_PRESENT: PASS/FAIL
+MANIFEST_METHOD_DETERMINISTIC (`compositing_method: deterministic_perspective_transform` and `generative_model_touched_cover_pixels: false`): PASS/FAIL
+
+A missing manifest, or one showing any other compositing method, defaults NO_AI_COVER_SUBSTITUTION to FAIL — do not accept a visual-inspection-only claim of fidelity for pipeline output. Where feasible, corroborate by running `tools/openai-image-pipeline/verify_composite.py`, which re-derives the expected cover region from the registered source asset and flags drift; a verifier FAIL is itself a PRODUCT_FIDELITY_FAIL.
+
 Any FAIL:
 
 STATUS: PRODUCT_FIDELITY_FAIL
@@ -371,6 +378,8 @@ BOOK_GEOMETRY_BELIEVABLE (visible thickness/edges/spine, not a flat card): PASS/
 HAND_OCCLUSION_NATURAL (fingers convincingly in front of/wrapped around the book, not floating over it): PASS/FAIL
 CONTACT_SHADOWS_BELIEVABLE (shadows and lighting match the surrounding scene): PASS/FAIL
 NO_STICKER_LOOK (reads as one photographed object, not a flat graphic pasted onto a photo): PASS/FAIL
+
+When produced via the pipeline in `shared/production-tools/openai-image-pipeline.md`, HAND_OCCLUSION_NATURAL requires the manifest's `occlusion_mask_used` to be `true` — `false` means no occlusion was applied and this criterion is FAIL regardless of how the composite looks at a glance.
 
 Any FAIL:
 

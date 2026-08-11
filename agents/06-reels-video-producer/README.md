@@ -121,6 +121,8 @@ If video generation mutates, distorts, or reinterprets the cover: do not accept 
 
 If the named approved cover asset cannot be accessed: `PRODUCT_ASSET_MISSING` — STOP and report through Agent 01 only. Never substitute another book.
 
+**Image keyframes for image-to-video.** When a Kling image-to-video shot needs a starting keyframe that shows an approved LiorTales book, produce that keyframe with the same pipeline Agent 05 uses for static assets (`shared/production-tools/openai-image-pipeline.md`, tooling in `tools/openai-image-pipeline/`) — generate the scene, then deterministically composite the exact cover onto it — before handing the keyframe to Kling. Never let Kling itself generate or motion-interpolate the cover artwork. This applies only to keyframe production; it does not change how Kling generates motion, voiceover, or the rest of the video, and does not apply when no keyframe compositing is involved (e.g. pure text-to-video with no book in frame).
+
 **Handheld shots are a separate capability gate.** The same principle applies to video: if the scene requires a person to physically grip the book cover-first, Agent 06 must confirm the available tools can simultaneously preserve the exact cover, realistic book geometry, natural finger occlusion, and believable contact shadows/lighting across frames (`workflows/pipeline-control-rules.md` §10) before accepting the shot. If they cannot: return `HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED` through Agent 01 rather than accepting a flat-tracked composite as realistic.
 
 ## VIDEO QUALITY STANDARD
