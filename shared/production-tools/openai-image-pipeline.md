@@ -1,12 +1,13 @@
 # OpenAI Image Production Pipeline — Workflow Contract
 
-Canonical reference for how Agent 05 and Agent 06 produce marketing images
-that include an approved LiorTales book, using OpenAI for scene generation
-and a local deterministic script for cover compositing. Referenced by
+Canonical reference for how Agent 05 and Agent 06 produce marketing imagery
+with OpenAI, including — whenever an approved LiorTales book is depicted —
+the local deterministic script that composites the exact cover onto the
+generated scene. Referenced by
 `agents/05-visual-creative-director/README.md`,
 `agents/06-reels-video-producer/README.md`,
 `agents/07-quality-control-brand-guardian/README.md`, and
-`workflows/pipeline-control-rules.md` §9/§10 rather than duplicated there.
+`workflows/pipeline-control-rules.md` §9/§10/§12 rather than duplicated there.
 
 ## Why this exists
 
@@ -52,6 +53,16 @@ region — is never used and is forbidden**, per
 `workflows/pipeline-control-rules.md` §9. Masking a region so a generative
 model can *fill* it is not compositing; only a geometric transform of the
 source file's own pixels counts.
+
+## Stage A used standalone for non-cover imagery
+
+Stage A (`generate_scene.py`) is also the default generator for carousel/static
+core imagery that does not depict a book cover at all — e.g. a human-only
+lifestyle or emotional-beat slide. In that case there is no book-cover plane
+to leave neutral and no Stage B step: the Stage A output is the finished
+core image, handed directly to Canva for assembly
+(`workflows/pipeline-control-rules.md` §12). Stage B (`compose_cover.py`)
+runs only for slides that must show the exact approved cover.
 
 ## What Stage A may and may never do
 

@@ -393,31 +393,41 @@ This area does not apply when the book is not hand-gripped (resting, propped, st
 
 Applies whenever the package's format is a carousel. Checks whether the finished carousel delivers a genuine sequence of distinct, image-led social-ad frames — the standard defined in `shared/brand/visual-identity-guide.md` §12 — not just "has images." A carousel can pass QC area 5 (technical visual defects) and still fail here for repetitive composition: that is the specific failure mode round 1 of this area missed (every slide had a real photo, but 4 of 6 slides used the identical photo-plus-dark-overlay-plus-centered-text structure).
 
+Agent 07 must inspect the actual rendered slide images for this area — not the storyboard, the production brief, or the generation prompts. A carousel that matches its approved storyboard on paper can still fail here if the rendered output doesn't deliver it. Do not return PASS based on specifications alone.
+
+Cover-specific defects (cover artwork altered, wrong title, distorted logo, invented/substitute product) are governed by QC area 15 (Product Asset Identity) — evaluate them there, not here. This area covers composition, storytelling, and human-realism quality only.
+
 FAIL if any of:
 
 - 3 or more slides share the same basic composition (e.g. the same "photo + full-width overlay + centered text" structure repeated) — the hard cap is 2;
 - 2 consecutive slides are mostly flat background + centered text;
-- the product/cover is presented only as a pasted rectangle, or floats alone on a blank background without strategic justification;
+- the first slide is weak — a large opaque text box, no clear focal point, or otherwise not scroll-stopping;
+- the product/cover is presented only as a pasted rectangle, floats alone on a blank background without strategic justification, or is pasted without believable perspective, scale, or lighting for its scene;
 - the product doesn't appear naturally integrated by slide 3 at the latest;
 - visual rhythm is weak — composition doesn't meaningfully vary slide to slide;
-- any AI-generated face looks exaggerated or uncanny rather than believable (`shared/brand/visual-identity-guide.md` §4 PEOPLE);
+- any AI-generated face looks exaggerated or uncanny rather than believable, or shows malformed hands (`shared/brand/visual-identity-guide.md` §4 PEOPLE, §14 AI VISUAL QUALITY);
+- emotion reads as exaggerated or fake rather than believable;
+- imagery reads as generic stock photography or a generic Canva/template aesthetic rather than the premium photorealistic direction (`agents/05-visual-creative-director/README.md` §VISUAL STYLE);
+- text on any slide is excessive (`shared/brand/visual-identity-guide.md` §12's "text stays short on the visual");
+- emotional progression across the sequence is weak or doesn't build from hook to payoff;
 - the carousel could be mistaken for a presentation deck.
 
 PASS only if all of:
 
 - the first slide is scroll-stopping with no large opaque text box;
 - imagery carries the story, not just decorates it;
-- emotional reactions are visibly present and believable, not exaggerated;
+- emotional reactions are visibly present and believable, not exaggerated, with visible progression across the sequence;
 - no more than 2 slides share the same basic composition;
-- the product/cover is integrated naturally, not pasted or isolated;
-- text is readable on mobile;
+- the product/cover is integrated naturally, not pasted or isolated, by slide 3 at the latest;
+- text is readable on mobile and stays within the short-copy standard;
+- imagery reads as premium photorealistic social-ad photography, not stock or template imagery;
 - the carousel reads as a sequence of real social-ad frames, not a document.
 
 Any FAIL:
 
 STATUS: CAROUSEL_VISUAL_REVISION_REQUIRED
 
-Route to Agent 05 under the standard revision-cycle rule (`workflows/pipeline-control-rules.md` §1). Identify specifically which slides repeat a composition and which structural pattern repeats — a general "weak" verdict does not give Agent 05 enough to fix it. This area evaluates storytelling/composition quality specifically — it does not replace QC area 5 (technical visual defects) or area 15 (Product Asset Identity, when a cover is depicted), both of which still apply independently to carousel packages.
+Route to Agent 05 under the standard revision-cycle rule (`workflows/pipeline-control-rules.md` §1). Identify specifically which slide(s) fail and which condition above they fail — a general "weak" verdict does not give Agent 05 enough to fix it. This area evaluates storytelling/composition/human-realism quality specifically — it does not replace QC area 5 (technical visual defects) or area 15 (Product Asset Identity, when a cover is depicted), both of which still apply independently to carousel packages.
 
 ## QC SCORING
 

@@ -212,11 +212,42 @@ Agent 05 defines the production brief AND produces the FINAL_VISUAL_ASSET for th
 Agent 04 owns the words.
 Agent 05 owns their visual placement, presentation, and final production.
 
+## STORYBOARD (MANDATORY BEFORE CAROUSEL GENERATION)
+
+Before generating any imagery for a carousel, Agent 05 must produce a slide-by-slide visual storyboard. This gates generation — it is not documentation written after the fact. Generating slide imagery without an approved storyboard is not a valid production step.
+
+For each slide, define:
+
+PURPOSE
+EMOTIONAL_BEAT
+PEOPLE_PRESENT
+FACIAL_EXPRESSION
+ACTION
+ENVIRONMENT
+CAMERA_FRAMING
+COMPOSITION
+PRODUCT_PLACEMENT
+TEXT_SAFE_AREA
+TEXT_AMOUNT
+RELATIONSHIP_TO_PREVIOUS_NEXT_SLIDE
+
+A carousel must read as one visual story, not six unrelated AI images — RELATIONSHIP_TO_PREVIOUS_NEXT_SLIDE exists specifically to force that continuity check across the sequence, not just within a single slide.
+
+The composition-variety hard rule below must already be satisfied by the storyboard itself, not patched in after generation. If two planned slides already share a basic composition, fix that at the storyboard stage.
+
 ## CAROUSEL
 
 Full visual storytelling standard: `shared/brand/visual-identity-guide.md` §12 — image-first, emotionally intense, HOOK→EMOTION→STORY→PRODUCT→PROOF/VARIETY→CTA flow, 3–10 word hooks, visual variety across slides, premium social look over flat brand-color backgrounds. Agent 07 checks the finished carousel against this standard (QC area 17, CAROUSEL VISUAL STORYTELLING) — it is not optional guidance.
 
 **Hard cap while producing, not just at review:** no more than 2 slides in one carousel may share the same basic composition (e.g. "photo + full-width dark overlay + centered text"). Track this slide-to-slide as you build — do not let a working layout become the default you reach for on slide 3, 4, and 5 just because it worked on slide 1. Vary framing, text placement, and background treatment deliberately at every slide.
+
+### PRIMARY VISUAL GENERATION ROUTE — OPENAI-PRIMARY, CANVA ASSEMBLY-ONLY
+
+Canonical routing: `workflows/pipeline-control-rules.md` §12. OpenAI image generation (`generate_scene.py`) is the default source of each slide's core lifestyle/scene imagery, per the storyboard — Canva is not the primary generator of carousel core visuals. Canva's role on this route is assembly only: typography, logo, CTA, graphic accents, spacing, and export on top of the generated imagery. Do not let Canva's own AI image generation or template layouts replace strong generated imagery, and do not default to a Canva-template aesthetic. Target aesthetic and prohibited look follow §VISUAL STYLE above (premium, photorealistic, warm, editorial, cinematic-but-believable) — generated imagery drifting toward a generic stock-photo or template-AI feel is a defect, not a stylistic choice.
+
+Whenever a slide depicts an approved book cover, the PRODUCT ASSET LOCK route above (two-stage scene generation + deterministic cover compositing) still applies for that slide's cover — this subsection governs the surrounding/non-cover imagery and the carousel's overall generation source, not cover compositing.
+
+Fallback, only when the OpenAI route is unavailable or blocked: Canva may assemble the carousel from already-approved, previously-generated or previously-QC-passed imagery only. Canva's own AI generation is not an acceptable default fallback for core imagery.
 
 When carousel is selected, define:
 
@@ -350,5 +381,7 @@ PRODUCTION_STATUS
 - Request missing/contradictory input through Agent 01; never invent it.
 - Preserve the full Creative Blueprint in the actual production prompt — never collapse it into a generic atmosphere description.
 - Never redraw, regenerate, or approximate an approved book cover — composite the exact Canva asset instead.
+- For carousel core imagery, OpenAI generation is primary and Canva is assembly-only (`workflows/pipeline-control-rules.md` §12) — do not default to Canva's own AI generation or template layouts for core imagery.
+- Do not generate carousel imagery before the mandatory storyboard is complete (§STORYBOARD).
 - PRODUCT_ASSET_MISSING is a hard stop — never substitute another book for a missing approved cover.
 - Never ship a handheld book composite as physically realistic unless exact cover, geometry, occlusion, and shadow are all genuinely satisfied — otherwise return HANDHELD_PRODUCT_COMPOSITING_UNSUPPORTED (`workflows/pipeline-control-rules.md` §10).

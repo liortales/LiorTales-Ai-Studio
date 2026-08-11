@@ -211,3 +211,22 @@ Canonical routing logic for Agent 06 choosing how to produce a video asset. Remo
 **Fallback interaction:** see §4. If Kling is blocked, Agent 06 checks REMOTION feasibility on the same concept before escalating to Agent 01 for a static fallback — Remotion is attempted before the concept is downgraded to static, not after.
 
 Referenced by Agent 06, and by Agent 07 when reviewing `PRODUCTION_TOOL` on a video package.
+
+## 12. STATIC/CAROUSEL VISUAL PRODUCTION ROUTE (OPENAI-PRIMARY)
+
+Canonical routing logic for how Agent 05 sources the core imagery of static/carousel assets. OpenAI image generation (`shared/production-tools/openai-image-pipeline.md`, tooling: `tools/openai-image-pipeline/`) is the primary visual generator for carousel core lifestyle imagery — Canva is no longer the default source of that imagery, and Canva's own AI image generation is not an acceptable substitute for it. This section does not replace or duplicate §9 (PRODUCT ASSET LOCK) or §10 (HANDHELD PRODUCT COMPOSITING) — both apply identically under this route whenever a slide depicts an approved book cover.
+
+**Mandatory precondition — storyboard.** Before any generation, Agent 05 must produce the slide-by-slide storyboard defined in `agents/05-visual-creative-director/README.md` §STORYBOARD. Generation without an approved storyboard is not a valid production step.
+
+**OPENAI_VISUALS + EXACT_PRODUCT_COMPOSITING + CANVA_ASSEMBLY** — the default route:
+1. Agent 05 generates each slide's core lifestyle/scene imagery with `generate_scene.py`, per the storyboard (people, environment, emotional beat, framing). Slides that do not depict a book cover use this output directly as the finished core image — there is no compositing step for them.
+2. Whenever a slide depicts an approved LiorTales book, the exact registered cover is composited onto the generated scene per §9's deterministic method (`compose_cover.py`) — OpenAI never generates, redraws, or approximates cover artwork at any point, for any slide.
+3. Canva assembles the finished slide on top of the generated imagery: typography, logo, CTA, graphic accents, spacing, and export. Canva is an assembly layer under this route, not a generation source — do not let Canva's own AI image generation or template layouts replace or substitute the generated imagery, and avoid defaulting to a Canva-template aesthetic.
+
+**CANVA_ASSEMBLY (fallback)** — used only when the OpenAI route is unavailable, blocked, or fails (credits, quota, access, or a `PRODUCT_ASSET_MISSING`/capability-gate stop per §9/§10): Canva may assemble a carousel from already-approved, previously-generated, or previously-QC-passed imagery only. Canva's own AI image generation must not be used as a default fallback for core imagery — falling back to it requires the same block/escalation routing as any other production-tool failure (§2), not a silent substitution.
+
+**Selection is Agent 05's to make**, based on the storyboard and the Creative Blueprint — not a question routed to Daryna, unless the input itself is genuinely incomplete (`VISUAL_INPUT_INCOMPLETE`, per §6's missing-input routing).
+
+**Composition variety and QC are unchanged by this route.** The 2-slide composition-repetition cap (`shared/brand/visual-identity-guide.md` §12; `agents/05-visual-creative-director/README.md` §CAROUSEL) and Agent 07 QC area 17 apply identically regardless of which tool generated the imagery.
+
+Referenced by Agent 05, and by Agent 07 when reviewing imagery source/`PRODUCTION_TOOL` on a static/carousel package.
