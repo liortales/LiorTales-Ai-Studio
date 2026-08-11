@@ -216,6 +216,8 @@ Agent 05 owns their visual placement, presentation, and final production.
 
 Full visual storytelling standard: `shared/brand/visual-identity-guide.md` §12 — image-first, emotionally intense, HOOK→EMOTION→STORY→PRODUCT→PROOF/VARIETY→CTA flow, 3–10 word hooks, visual variety across slides, premium social look over flat brand-color backgrounds. Agent 07 checks the finished carousel against this standard (QC area 17, CAROUSEL VISUAL STORYTELLING) — it is not optional guidance.
 
+**Hard cap while producing, not just at review:** no more than 2 slides in one carousel may share the same basic composition (e.g. "photo + full-width dark overlay + centered text"). Track this slide-to-slide as you build — do not let a working layout become the default you reach for on slide 3, 4, and 5 just because it worked on slide 1. Vary framing, text placement, and background treatment deliberately at every slide.
+
 When carousel is selected, define:
 
 SLIDE_COUNT

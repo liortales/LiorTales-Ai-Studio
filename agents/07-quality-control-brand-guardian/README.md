@@ -391,33 +391,33 @@ This area does not apply when the book is not hand-gripped (resting, propped, st
 
 ### 17. CAROUSEL VISUAL STORYTELLING
 
-Applies whenever the package's format is a carousel. Checks whether the finished carousel actually delivers image-led, emotionally engaged, scroll-stopping social content — the standard defined in `shared/brand/visual-identity-guide.md` §12 — not just structural correctness.
+Applies whenever the package's format is a carousel. Checks whether the finished carousel delivers a genuine sequence of distinct, image-led social-ad frames — the standard defined in `shared/brand/visual-identity-guide.md` §12 — not just "has images." A carousel can pass QC area 5 (technical visual defects) and still fail here for repetitive composition: that is the specific failure mode round 1 of this area missed (every slide had a real photo, but 4 of 6 slides used the identical photo-plus-dark-overlay-plus-centered-text structure).
 
 FAIL if any of:
 
-- more than 2 slides are mostly text with no meaningful image;
-- the first slide has no strong visual/emotional hook;
-- the design reads as a presentation deck rather than social content;
-- all slides share nearly identical composition (e.g. every slide is centered text on a flat colored background);
-- human emotion is visibly absent throughout;
-- the product/cover appears pasted unnaturally onto its slide;
-- visual hierarchy is weak (unclear what to look at first).
+- 3 or more slides share the same basic composition (e.g. the same "photo + full-width overlay + centered text" structure repeated) — the hard cap is 2;
+- 2 consecutive slides are mostly flat background + centered text;
+- the product/cover is presented only as a pasted rectangle, or floats alone on a blank background without strategic justification;
+- the product doesn't appear naturally integrated by slide 3 at the latest;
+- visual rhythm is weak — composition doesn't meaningfully vary slide to slide;
+- any AI-generated face looks exaggerated or uncanny rather than believable (`shared/brand/visual-identity-guide.md` §4 PEOPLE);
+- the carousel could be mistaken for a presentation deck.
 
 PASS only if all of:
 
-- the first slide is scroll-stopping;
+- the first slide is scroll-stopping with no large opaque text box;
 - imagery carries the story, not just decorates it;
-- emotional reactions are visibly present;
-- visual rhythm changes across slides (shot type, layout, or treatment varies);
-- the product/cover is integrated naturally into its slide;
+- emotional reactions are visibly present and believable, not exaggerated;
+- no more than 2 slides share the same basic composition;
+- the product/cover is integrated naturally, not pasted or isolated;
 - text is readable on mobile;
-- the carousel reads as social content, not a document.
+- the carousel reads as a sequence of real social-ad frames, not a document.
 
 Any FAIL:
 
 STATUS: CAROUSEL_VISUAL_REVISION_REQUIRED
 
-Route to Agent 05 under the standard revision-cycle rule (`workflows/pipeline-control-rules.md` §1). This area evaluates storytelling/composition quality specifically — it does not replace QC area 5 (technical visual defects) or area 15 (Product Asset Identity, when a cover is depicted), both of which still apply independently to carousel packages.
+Route to Agent 05 under the standard revision-cycle rule (`workflows/pipeline-control-rules.md` §1). Identify specifically which slides repeat a composition and which structural pattern repeats — a general "weak" verdict does not give Agent 05 enough to fix it. This area evaluates storytelling/composition quality specifically — it does not replace QC area 5 (technical visual defects) or area 15 (Product Asset Identity, when a cover is depicted), both of which still apply independently to carousel packages.
 
 ## QC SCORING
 

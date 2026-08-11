@@ -77,23 +77,49 @@ Avoid: slow generic openings, excessive camera movement, obvious AI artifacts, i
 
 ## 12. CAROUSEL
 
-**Production learning (2026-08-11):** a real carousel produced under the prior version of this section tested as visually weak — flat cream backgrounds on 4 of 6 slides, plain centered text, no real imagery beyond two product slides. It read as a corporate presentation, not social content. This section was rewritten in response; the principles below are the standard every carousel is held to, not aspirational guidance.
+**Production learning (2026-08-11, round 1):** a real carousel tested as visually weak under the prior version of this section — flat cream backgrounds on 4 of 6 slides, plain centered text, almost no real imagery. Rewritten to require image-first, emotionally intense slides.
 
-**Image-first.** Most slides carry a strong real visual — children, parents, families, emotional reactions, reading moments, gifting moments, close-ups of books, hands holding books, approved covers, lifestyle scenes. A text-only slide (no meaningful image) needs a specific strategic reason, not default convenience. Reuse existing approved lifestyle photography where it genuinely fits rather than treating every carousel as a from-scratch shoot.
+**Production learning (2026-08-11, round 2):** the round-1 fix still failed QC — not for lack of images, but for repetitive ad composition. Slides 1–3 all used the identical "photo + full-width dark bottom overlay + centered text" structure; slides 4–5 fell back into flat presentation-style layouts; the product appeared too static and too late; some AI faces read as exaggerated or uncanny. Images alone don't make a carousel feel like social content — composition variety across the sequence does. This section is rewritten again to make that variety a hard requirement, not a suggestion.
 
-**Emotional intensity.** Every slide should read as visibly emotional — joy, surprise, curiosity, laughter, pride, warmth, connection, wonder — not a passive, neutral layout with copy floating in empty space.
+### Hard rule: no more than 2 slides may share the same composition
 
-**Slide 1 stops the scroll.** Large visual, expressive face or emotional family moment, short bold hook, strong contrast. Never a plain background with a paragraph.
+A LiorTales carousel must not reuse the same basic visual structure — e.g. "full-bleed photo + full-width dark bottom overlay + centered text" — on 3 or more slides. Each slide must intentionally vary its visual grammar: framing, text placement, and background treatment, even while reading as one campaign.
 
-**Narrative flow, not slide count.** Recommended progression where strategically appropriate: HOOK → EMOTION → STORY → PRODUCT → PROOF/VARIETY → CTA. Each slide should look visually distinct from the others while still reading as one campaign — do not repeat the same centered-text-on-flat-background layout slide after slide. Do not require a fixed slide count (see `agents/05-visual-creative-director/README.md` §CAROUSEL — "Do not add slides merely to increase quantity").
+### Recommended flow (vary composition at every step)
 
-**Text stays short on the visual.** 3–10 words for the main hook, one short supporting line at most. Longer copy belongs in the caption, not on the slide.
+**Slide 1 — Human hook.** Full-bleed emotional lifestyle image. Very short hook. No large opaque text box.
 
-**Visual variety across one carousel.** Vary shot type deliberately — close-up, medium shot, product shot, family scene, child reaction, book detail, multi-cover layout, typography treatment. Six slides that are all "centered headline on flat background" fail this regardless of how good the copy is.
+**Slide 2 — Emotional moment.** Different framing from slide 1 — close-up, reaction, child interaction, parent-child moment. Text integrated into the image's own negative space, not placed inside a repeated banner.
 
-**Premium social look, not a deck.** Target: premium children's brand + modern social advertising + emotional lifestyle photography. Not: corporate deck, minimal presentation, plain quote cards, template-looking slides.
+**Slide 3 — Product reveal.** The book becomes the hero. Use the exact approved cover. Prefer a child holding, receiving, or reading the book, or a premium product setup — not a cover floating alone on a blank background unless strategically justified.
 
-**Brand colors support, they don't dominate.** Cream / charcoal / warm gold accents remain the working palette (§8 — no official hex values are locked yet, so treat this as current direction, not a confirmed brand-color system). They should not force every slide into a flat colored background. Photography and real visuals are the primary surface; color supports typography, overlays, accents, frames, and CTA elements.
+**Slide 4 — Personalization proof.** Show how the child becomes part of the story — product and child/story visual together. Avoid plain dark presentation backgrounds.
+
+**Slide 5 — Variety / social proof.** Multiple approved books in a richer lifestyle composition — stacked books, books on a bed, books in hands, a gift setup, a sibling reading scene. Do not simply place covers in a row on a flat background.
+
+**Slide 6 — CTA.** Strong human emotion or gifting moment. Short CTA. A visually memorable ending, not a repeat of an earlier layout.
+
+Deviating from this exact structure is fine when strategy calls for it, but any deviation must still satisfy the composition-variety hard rule above. Do not require a fixed slide count (see `agents/05-visual-creative-director/README.md` §CAROUSEL — "Do not add slides merely to increase quantity").
+
+### Design rules
+
+- No repeated full-width dark rectangle — or any single repeated overlay treatment — across the carousel.
+- No corporate-presentation-style slides.
+- No large dead empty zones.
+- No isolated book cover floating in the middle of a blank background, unless strategically justified.
+- No exaggerated or uncanny AI facial expressions — believable emotion only (§4 PEOPLE).
+- Every slide must feel like a distinct ad frame, not a deck slide.
+- The product must appear naturally integrated by slide 3 at the latest.
+- Compose like a real social-ad sequence, not a Canva presentation template.
+- Brand colors (cream/charcoal/gold) support typography and accents — they must not become the dominant background treatment repeated across multiple slides. That was the exact failure mode in round 2: a dark background used as the "safe" default on slide after slide is still a repeated composition.
+
+### Text stays short on the visual
+
+3–10 words for the main hook, one short supporting line at most. Longer copy belongs in the caption, not on the slide.
+
+### Product Asset Fidelity is unconditional
+
+Everything above governs the surrounding design — it never extends to the cover artwork itself. Approved covers are used exactly as registered; never redrawn, regenerated, approximated, or modified (canonical rule: `workflows/pipeline-control-rules.md` §9). A richer background, natural product integration, or premium surrounding treatment around the cover is encouraged; touching the cover's own pixels is not.
 
 **Product Asset Fidelity is unconditional.** Everything above governs the surrounding design — it never extends to the cover artwork itself. Approved covers are used exactly as registered; never redrawn, regenerated, approximated, or modified (canonical rule: `workflows/pipeline-control-rules.md` §9). A richer background, contact shadow, or premium surrounding treatment around the cover is encouraged; touching the cover's own pixels is not.
 
